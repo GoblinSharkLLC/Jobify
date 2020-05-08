@@ -4,7 +4,9 @@
   "description": "Job board",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set \"NODE_ENV=production\" && nodemon src/server/server.js",
+    "build": "set \"NODE_ENV=production\" && \"webpack\"",
+    "dev": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon src/server/server.js\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "isomorphic-fetch": "^2.2.1",
+    "mini-css-extract-plugin": "^0.9.0",
     "path": "^0.12.7",
     "pg": "^8.1.0",
     "react": "^16.13.1",

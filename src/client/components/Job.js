@@ -42,21 +42,26 @@ export default function Job({ job }) {
         });
     }
   };
+
+  const formatUrl = (url) => {
+    const noHttp = url.substr(url.indexOf('www.'));
+    return noHttp.substr(0, noHttp.indexOf('/'));
+  };
   return (
     <div className="job-container">
-      <b>{title}</b>
-      <p>{company}</p>
+      <p className="job-header">{title}</p>
+      <p className="text-muted">At: {company}</p>
       <p>
-        {city}, <b>{state}</b>
+        {city}, {state}
       </p>
       <p>
         <b>Status: </b>
         {status}
       </p>
       <ul>
-        <li>{description}</li>
+        <li>{description.slice(0, 100) + '...'}</li>
       </ul>
-      <p>{url}</p>
+      <a href={url}>{formatUrl(url)}</a>
       <aside>{posted}</aside>
       {saved === true ? (
         <div>

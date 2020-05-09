@@ -1,5 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
 import { Form, Button, Fade } from 'react-bootstrap';
+>>>>>>> master
 
 export default function Login() {
   return (

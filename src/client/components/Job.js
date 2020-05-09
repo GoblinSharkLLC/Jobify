@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Contact from "./Contact";
 
 export default function Job({
@@ -13,6 +13,16 @@ export default function Job({
   contact,
   notes,
 }) {
+  const [saved, setSaved] = useState([false]);
+  const updateButton = (event) => {
+    if (event.target.value === "Saved") {
+      // if the user wants to unsave
+      setSaved([false]);
+    } else {
+      // if the user wants to save
+      setSaved([true]);
+    }
+  };
   return (
     <div>
       <b>{title}</b>
@@ -33,7 +43,12 @@ export default function Job({
           <Contact contact={contact} />
         </div>
       ) : null}
-      <textarea>{notes}</textarea>
+      {notes || saved ? <textarea>{notes}</textarea> : null}
+      {saved ? (
+        <input type="button" value="Saved" onClick={updateButton} />
+      ) : (
+        <input type="button" value="Save Job" onClick={updateButton} />
+      )}
     </div>
   );
 }

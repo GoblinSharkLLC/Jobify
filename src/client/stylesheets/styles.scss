@@ -4,6 +4,7 @@ $tertiaryColor: lighten($secondaryColor, 10%);
 
 body {
   font-family: 'Times New Roman', Times, serif;
+  background-color: #dfdfdf;
 }
 #find-jobs-display {
   display: flex;
@@ -32,4 +33,19 @@ body {
 
 .text-muted {
   color: darken(#6c757d, 50%) !important;
+}
+.login {
+  max-width: 30vw;
+  display: flex;
+  justify-content: center;
+}
+
+#search-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+#job-search {
+  box-shadow: 1px 1px 3px;
 }

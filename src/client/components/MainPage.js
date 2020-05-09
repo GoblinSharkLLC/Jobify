@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Job from './Job';
+import { Button } from 'react-bootstrap';
 
 const placeHolderJobs = [
   {
@@ -45,10 +46,12 @@ export default function MainPage() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" placeholder="Job title" />
-        <input type="submit" value="Find Jobs" />
-      </form>
+      <div id="search-container">
+        <form id="job-search">
+          <input type="text" name="query" placeholder="Job Title..." />
+          <Button onClick={handleSubmit}>Search</Button>
+        </form>
+      </div>
       <p>Display Jobs</p>
       <div id="find-jobs-display">
         {jobs.map((job, idx) => {

@@ -16,7 +16,6 @@ export default function Job({ job, savedContainer }) {
     contact,
     notes,
   } = job;
-  console.log(savedContainer);
   const [saved, setSaved] = useState([false]);
   const updateButton = async () => {
     if (saved) {
@@ -68,7 +67,6 @@ export default function Job({ job, savedContainer }) {
               <option value="Offer">Offer</option>
               <option value="Rejected">Rejected</option>
             </select>
-            <input type="submit" value="submit" />
           </form>
         </p>
       ) : null}

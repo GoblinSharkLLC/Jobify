@@ -19,7 +19,7 @@ export default function JobContainer() {
   ]);
   const getSavedJob = async () => {
     try {
-      const result = await axios.get("url for saved job", {
+      const result = await axios.get("/api/getUserJob", {
         data: "user's id",
       });
       setSavedJobs(result);

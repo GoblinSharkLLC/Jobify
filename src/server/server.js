@@ -9,8 +9,9 @@ const contactRouter = require('./routers/contactRouter');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express());
-app.use(bodyParser());
+app.use(express.json());
+// app.use(bodyParser());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // GET to /api/search -> jobs router -> jobs controller -> searchJobs, api request
@@ -22,15 +23,16 @@ app.use(cookieParser());
 // POST to /api/contact -> contact router -> contact controller -> createContact in database
 // GET to /api/contact -> contact router -> contact controller -> getContact frrm database with queried job
 
-app.use('/api/savedJobs', jobRouter, (req, res) => {
-  return res.status(200).json();
-});
+// app.use('/api/savedJobs', jobRouter, (req, res) => {
+//   return res.status(200).json();
+// });
 app.use('/api/users', userRouter, (req, res) => {
-  return res.status(200).json();
+  console.log('Back in server.js');
+  // return res.status(200).send('Returning from /api/users in server.js');
 });
-app.use('/api/contacts', contactRouter, (req, res) => {
-  return res.status(200).json();
-});
+// app.use('/api/contacts', contactRouter, (req, res) => {
+//   return res.status(200).json();
+// });
 
 app.use('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../../index.html'));
@@ -47,7 +49,7 @@ if (process.env.NODE_env === 'production') {
   });
 }
 
-app.use((req, res) => {
+app.use('/', (req, res) => {
   res.status(404).send('Wrong way, turn around: ');
 });
 

@@ -3,10 +3,12 @@ const jobController = require('../controllers/JobController.js');
 
 const router = express.Router();
 
-router.get('/', jobController.getJobs, (req, res, next) => {
-  return next();
-});
+// router.get('/', jobController.getJobs, (req, res, next) => {
+//   return next();
+// });
 
 router.post('/', jobController.saveJob, (req, res, next) => {
   return next();
 });
+
+module.exports = router;

@@ -5,7 +5,10 @@ const saltRounds = 10;
 const userController = {};
 
 userController.createUser = (req, res, next) => {
+  console.log('Entering createUser');
+  console.log('Request body in createUser -> ', req.body);
   const { username, password } = req.body;
+
   if (!username.length || !password.length) {
     return next({
       log: 'Error in createUser middleware',
@@ -17,7 +20,7 @@ userController.createUser = (req, res, next) => {
     bcrypt.hash(password, salt, (err, hash) => {
       // Store hash in your password DB.
       const text = 'INSERT INTO users(username, password) VALUES ($1, $2)';
-      const values = [username, hash];
+      const values = [username.toLowerCase(), hash];
       db.query(text, values)
         .then(() => {
           return next();
@@ -37,14 +40,33 @@ userController.createUser = (req, res, next) => {
       message: { error: `Error in createUser: ${err}` },
     });
   });
-};
-
-userController.findUser = (req, res, next) => {
   return next();
 };
 
 userController.verifyUser = (req, res, next) => {
-  return next();
+  console.log('Entering verifyUser');
+  const { username, password } = req.body;
+  if (!username.length || !password.length) {
+    return next({
+      log: 'Error in verifyUser middleware',
+      message: { err: 'Nothing was entered into username/password' },
+    });
+  }
+  const text = 'SELECT password FROM users WHERE username = $1';
+  const values = [username.toLowerCase()];
+  db.query(text, values).then((data) => {
+    console.log('Data returned from database in verifyUser-> ', data);
+    const hashedPw = data.rows[0].password;
+    bcrypt.compare(password, hashedPw, (err, result) => {
+      console.log('Result -> ', result);
+      if (result === true) {
+        res.locals.user = data;
+        return next();
+      }
+      return res.redirect('/signup');
+    });
+    return next();
+  });
 };
 
 module.exports = userController;

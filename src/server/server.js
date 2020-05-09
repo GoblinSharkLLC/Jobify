@@ -32,17 +32,6 @@ app.use('/api/contacts', contactRouter, (req, res) => {
   return res.status(200).json();
 });
 
-app.use(
-  '/signup',
-  // HASH PW (BCRYPT)
-  // STORE USER IN DB
-  // JWT
-  // SET ISLOGGEDIN
-  (req, res) => {
-    return res.status(200).json();
-  }
-);
-
 app.use('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../../index.html'));
 });

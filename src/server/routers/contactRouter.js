@@ -1,4 +1,4 @@
 const express = require('express');
-const contactController = require('../controllers/contactController.js');
+const contactController = require('../controllers/ContactController.js');
 
 const router = express.Router();

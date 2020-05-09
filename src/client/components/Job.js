@@ -16,30 +16,30 @@ export default function Job({ job }) {
     notes,
   } = job;
   const [saved, setSaved] = useState([false]);
-  const updateButton = () => {
+  const updateButton = async () => {
     if (saved) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
-      axios
-        .delete("/api/savedJobs", {
+      try {
+        await axios.delete("/api/savedJobs", {
           data: { title, company, url },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setSaved(false);
         });
+        setSaved(false);
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       // if the user wants to save Job
       // POST to /api/savedJobs
-      axios
+      try {
+        axios
         .post("/api/savedJobs", {
           data: job,
-        })
-        .then((response) => {
-          console.log(response.data);
-          setSaved(true);
         });
-    }
+        setSaved(true);
+      } catch (err) {
+        console.log(err)
+      }
   };
   return (
     <div>

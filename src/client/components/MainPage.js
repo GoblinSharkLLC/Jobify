@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Job from "./Job";
+import React, { useState } from 'react';
+import axios from 'axios';
+import Job from './Job';
 
 export default function MainPage() {
   const [jobs, setJobs] = useState([]);

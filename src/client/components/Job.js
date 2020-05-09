@@ -14,7 +14,19 @@ export default function Job({
 }) {
   return (
     <div>
-      <p></p>
+      <b>{title}</b>
+      <p>{company}</p>
+      <p>
+        {city}, {state}
+      </p>
+      <p>
+        <span>Status:</span> {status}
+      </p>
+      <ul>
+        <li>{description}</li>
+      </ul>
+      <p>{url}</p>
+      <aside>{posted} days ago</aside>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Contact from "./Contact";
 
 export default function Job({
   title,
@@ -27,6 +28,12 @@ export default function Job({
       </ul>
       <p>{url}</p>
       <aside>{posted} days ago</aside>
+      {contact ? (
+        <div>
+          <Contact contact={contact} />
+        </div>
+      ) : null}
+      <textarea>{notes}</textarea>
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { Form, Button, Fade } from 'react-bootstrap';
 export default function Login() {
   return (
     <div className="login">
-      <p>Hi</p>
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Username</Form.Label>

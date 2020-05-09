@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import Contact from "./Contact";
-import axios from "axios";
+import React, { useState } from 'react';
+import Contact from './Contact';
+import axios from 'axios';
 
 export default function Job({ job, savedContainer }) {
   const {
+    id,
     title,
+    city,
     company,
     url,
-    city,
     state,
     status,
     posted,
@@ -21,8 +22,13 @@ export default function Job({ job, savedContainer }) {
     if (saved) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
+<<<<<<< HEAD
+      axios
+        .delete('/api/savedJobs', {
+=======
       try {
         await axios.delete("/api/savedJobs", {
+>>>>>>> 0e89c94112f9326c71a814187011f6dc6dda426b
           data: { title, company, url },
         });
         setSaved(false);
@@ -33,8 +39,13 @@ export default function Job({ job, savedContainer }) {
     } else {
       // if the user wants to save Job
       // POST to /api/savedJobs
+<<<<<<< HEAD
+      axios
+        .post('/api/savedJobs', {
+=======
       try {
         axios.post("/api/savedJobs", {
+>>>>>>> 0e89c94112f9326c71a814187011f6dc6dda426b
           data: job,
         });
         setSaved(true);
@@ -44,21 +55,26 @@ export default function Job({ job, savedContainer }) {
       setSaved(true);
     }
   };
+
+  const formatUrl = (url) => {
+    const noHttp = url.substr(url.indexOf('www.'));
+    return noHttp.substr(0, noHttp.indexOf('/'));
+  };
   return (
-    <div>
-      <b>{title}</b>
-      <p>{company}</p>
+    <div className="job-container">
+      <p className="job-header">{title}</p>
+      <p className="text-muted">At: {company}</p>
       <p>
-        {city}, <b>{state}</b>
+        {city}, {state}
       </p>
       <p>
         <b>Status: </b>
         {status}
       </p>
       <ul>
-        <li>{description}</li>
+        <li>{description.slice(0, 100) + '...'}</li>
       </ul>
-      <p>{url}</p>
+      <a href={url}>{formatUrl(url)}</a>
       <aside>{posted}</aside>
       {savedContainer === true ? (
         <div>

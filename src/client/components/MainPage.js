@@ -26,7 +26,7 @@ export default function MainPage() {
       posted: "posted",
       description: "description",
       contact: "Mr.",
-      notes: "Whats up",
+      notes: "",
     },
   ]);
 

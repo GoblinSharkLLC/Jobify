@@ -10,7 +10,7 @@ export default function JobContainer() {
       url: "url",
       city: "city",
       state: "state",
-      status: "status",
+      status: "PENDING",
       posted: "posted",
       description: "description",
       contact: { name: "John", email: "John@email", number: "8398080" },

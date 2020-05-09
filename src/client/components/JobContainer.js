@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Job from "./Job";
-import Contact from "./Contact";
 import axios from "axios";
 
 export default function JobContainer() {
@@ -30,7 +29,6 @@ export default function JobContainer() {
   };
   return (
     <div>
-      <p>This is the Job Container</p>
       {savedJobs.map((savedJob, idx) => {
         return (
           <Job key={`savedJob${idx}`} job={savedJob} savedContainer={true} />

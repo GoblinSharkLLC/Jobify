@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Contact from "./Contact";
 import axios from "axios";
 
-export default function Job({ job }) {
+export default function Job({ job, savedContainer }) {
   const {
     title,
     company,
@@ -15,6 +15,7 @@ export default function Job({ job }) {
     contact,
     notes,
   } = job;
+  console.log(savedContainer);
   const [saved, setSaved] = useState([false]);
   const updateButton = async () => {
     if (saved) {
@@ -28,18 +29,20 @@ export default function Job({ job }) {
       } catch (err) {
         console.log(err);
       }
+      setSaved(false);
     } else {
       // if the user wants to save Job
       // POST to /api/savedJobs
       try {
-        axios
-        .post("/api/savedJobs", {
+        axios.post("/api/savedJobs", {
           data: job,
         });
         setSaved(true);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
+      setSaved(true);
+    }
   };
   return (
     <div>
@@ -57,12 +60,12 @@ export default function Job({ job }) {
       </ul>
       <p>{url}</p>
       <aside>{posted}</aside>
-      {saved === true ? (
+      {savedContainer === true ? (
         <div>
           <Contact contact={contact} />
         </div>
       ) : null}
-      {saved === true ? <textarea defaultValue={notes} /> : null}
+      {savedContainer === true ? <textarea defaultValue={notes} /> : null}
       {saved === true ? (
         <input type="button" value="Delete Job" onClick={updateButton} />
       ) : (

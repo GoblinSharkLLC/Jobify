@@ -13,7 +13,7 @@ export default function MainPage() {
       status: "status",
       posted: "posted",
       description: "description",
-      contact: "Mr.",
+      contact: { name: "name", email: "email", number: "phone" },
       notes: "Whats up",
     },
     {
@@ -25,7 +25,7 @@ export default function MainPage() {
       status: "status",
       posted: "posted",
       description: "description",
-      contact: "Mr.",
+      contact: { name: "name", email: "email" },
       notes: "",
     },
   ]);
@@ -48,7 +48,7 @@ export default function MainPage() {
       </form>
       <p>Display Jobs</p>
       {jobs.map((job, idx) => {
-        return <Job key={`job${idx}`} job={job} />;
+        return <Job key={`job${idx}`} job={job} savedContainer={false} />;
       })}
     </div>
   );

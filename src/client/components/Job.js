@@ -14,13 +14,13 @@ export default function Job({
   notes,
 }) {
   const [saved, setSaved] = useState([false]);
-  const updateButton = (event) => {
-    if (event.target.value === "Saved") {
-      // if the user wants to unsave
-      setSaved([false]);
+  const updateButton = () => {
+    if (saved) {
+      // if the user wants to delete Job
+      setSaved(false);
     } else {
-      // if the user wants to save
-      setSaved([true]);
+      // if the user wants to save Job
+      setSaved(true);
     }
   };
   return (
@@ -44,8 +44,8 @@ export default function Job({
         </div>
       ) : null}
       {notes || saved ? <textarea>{notes}</textarea> : null}
-      {saved ? (
-        <input type="button" value="Saved" onClick={updateButton} />
+      {saved === true ? (
+        <input type="button" value="Delete Job" onClick={updateButton} />
       ) : (
         <input type="button" value="Save Job" onClick={updateButton} />
       )}

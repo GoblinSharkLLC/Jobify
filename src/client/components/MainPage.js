@@ -1,9 +1,34 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Job from './Job';
+import React, { useState } from "react";
+import axios from "axios";
+import Job from "./Job";
 
 export default function MainPage() {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([
+    {
+      title: "Engineering",
+      company: "Tech Corp",
+      url: "url",
+      city: "city",
+      state: "state",
+      status: "status",
+      posted: "posted",
+      description: "description",
+      contact: "Mr.",
+      notes: "Whats up",
+    },
+    {
+      title: "Engineering",
+      company: "Tech Corp",
+      url: "url",
+      city: "city",
+      state: "state",
+      status: "status",
+      posted: "posted",
+      description: "description",
+      contact: "Mr.",
+      notes: "Whats up",
+    },
+  ]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,8 +47,8 @@ export default function MainPage() {
         <input type="submit" value="Find Jobs" />
       </form>
       <p>Display Jobs</p>
-      {jobs.map((job) => {
-        return <Job job={job} />;
+      {jobs.map((job, idx) => {
+        return <Job key={`job${idx}`} job={job} />;
       })}
     </div>
   );

@@ -11,6 +11,7 @@ body {
 }
 
 .job-container {
+  border-radius: 10px;
   background-color: #fff;
   margin: 0px 30px 0px 30px;
   padding: 20px;
@@ -43,9 +44,12 @@ body {
 #search-container {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  padding: 50px 50px;
 }
 
 #job-search {
   box-shadow: 1px 1px 3px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
 }

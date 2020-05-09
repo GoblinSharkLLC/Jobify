@@ -1,0 +1,55 @@
+$primaryColor: #212529;
+$secondaryColor: lighten($primaryColor, 10%);
+$tertiaryColor: lighten($secondaryColor, 10%);
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #dfdfdf;
+}
+#find-jobs-display {
+  display: flex;
+}
+
+.job-container {
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0px 30px 0px 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px;
+  width: 20vw;
+  min-width: 280px;
+}
+
+.job-header {
+  color: $primaryColor;
+  font-weight: 500;
+  margin-bottom: 0.1em;
+}
+
+.company {
+  color: $secondaryColor;
+}
+
+.text-muted {
+  color: darken(#6c757d, 50%) !important;
+}
+.login {
+  max-width: 30vw;
+  display: flex;
+  justify-content: center;
+}
+
+#search-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 50px;
+}
+
+#job-search {
+  box-shadow: 1px 1px 3px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}

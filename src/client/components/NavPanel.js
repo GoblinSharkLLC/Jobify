@@ -1,12 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar, NavItem, Nav, Col, Button } from 'react-bootstrap';
 
-export default function NavPanel() {
+export default function NavPanel({ userName }) {
   return (
-    <div className="nav-panel">
-      <Link to="/">Find Jobs</Link>
-      <Link to="/jobs">Saved Jobs</Link>
-      <Link to="/login">Login</Link>
+    <div>
+      <div>
+        <Navbar bg="light">
+          <Col xs={1} />
+          <Col xs={2} />
+          <Col>
+            <Button variant="outline-secondary" as={Link} to="/">
+              Find Jobs
+            </Button>
+          </Col>
+          <Col>
+            <Navbar.Brand className="h1">Jobly</Navbar.Brand>
+          </Col>
+          <Button variant="outline-secondary" as={Link} to="/jobs">
+            Saved Jobs
+          </Button>
+          <Col xs={2} />
+          <Col xs={1}>
+            {userName ? (
+              <NavItem>{userName}</NavItem>
+            ) : (
+              <Button variant="outline-primary" as={Link} to="/login">
+                Log In
+              </Button>
+            )}
+          </Col>
+        </Navbar>
+      </div>
     </div>
   );
 }

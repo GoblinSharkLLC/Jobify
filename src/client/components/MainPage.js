@@ -29,7 +29,36 @@ const placeHolderJobs = [
 ];
 
 export default function MainPage() {
+<<<<<<< HEAD
   const [jobs, setJobs] = useState(placeHolderJobs);
+=======
+  const [jobs, setJobs] = useState([
+    {
+      title: "Engineering",
+      company: "Tech Corp",
+      url: "url",
+      city: "city",
+      state: "state",
+      status: "status",
+      posted: "posted",
+      description: "description",
+      contact: { name: "name", email: "email", number: "phone" },
+      notes: "Whats up",
+    },
+    {
+      title: "Engineering",
+      company: "Tech Corp",
+      url: "url",
+      city: "city",
+      state: "state",
+      status: "status",
+      posted: "posted",
+      description: "description",
+      contact: { name: "name", email: "email" },
+      notes: "",
+    },
+  ]);
+>>>>>>> 0e89c94112f9326c71a814187011f6dc6dda426b
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,7 +78,7 @@ export default function MainPage() {
       </form>
       <p>Display Jobs</p>
       {jobs.map((job, idx) => {
-        return <Job key={`job${idx}`} job={job} />;
+        return <Job key={`job${idx}`} job={job} savedContainer={false} />;
       })}
     </div>
   );

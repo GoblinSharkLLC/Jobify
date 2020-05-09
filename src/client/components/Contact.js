@@ -1,5 +1,14 @@
 import React from "react";
 
-export default function Contact({ name, number, email }) {
-  return <div>{name ? <b>{name}</b> : <input type="text" />}</div>;
+export default function Contact({ contact }) {
+  console.log(contact);
+  const { name, email, number } = contact;
+  return (
+    <div>
+      <p>
+        <b>{name}: </b>
+        {email}, {number}
+      </p>
+    </div>
+  );
 }

@@ -66,7 +66,7 @@ export default function Job({ job, savedContainer }) {
         </div>
       ) : null}
       {savedContainer === true ? <textarea defaultValue={notes} /> : null}
-      {saved === true ? (
+      {saved === true || savedContainer === true ? (
         <input type="button" value="Delete Job" onClick={updateButton} />
       ) : (
         <input type="button" value="Save Job" onClick={updateButton} />

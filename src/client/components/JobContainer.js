@@ -14,7 +14,7 @@ export default function JobContainer() {
       status: "status",
       posted: "posted",
       description: "description",
-      contact: { name: "name", email: "email", number: "phone" },
+      contact: { name: "John", email: "John@email", number: "8398080" },
       notes: "Whats up",
     },
   ]);

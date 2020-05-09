@@ -43,29 +43,34 @@ userController.createUser = (req, res, next) => {
   return next();
 };
 
-userController.verifyUser = (req, res, next) => {
+userController.verifyUser = async (req, res, next) => {
   console.log('Entering verifyUser');
   const { username, password } = req.body;
+
   if (!username.length || !password.length) {
     return next({
       log: 'Error in verifyUser middleware',
       message: { err: 'Nothing was entered into username/password' },
     });
   }
+
   const text = 'SELECT password FROM users WHERE username = $1';
   const values = [username.toLowerCase()];
+
+  // Query the data with the username taken from the request body and find the stored password
   db.query(text, values).then((data) => {
-    console.log('Data returned from database in verifyUser-> ', data);
+    // console.log('Data returned from database in verifyUser-> ', data);
     const hashedPw = data.rows[0].password;
+
+    // Compare stored password to given password from request body (frontend login page)
     bcrypt.compare(password, hashedPw, (err, result) => {
-      console.log('Result -> ', result);
+      console.log('Result of bcrypt -> ', result);
       if (result === true) {
-        res.locals.user = data;
+        res.locals.user = { username };
         return next();
       }
       return res.redirect('/signup');
     });
-    return next();
   });
 };
 

@@ -10,8 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-// app.use(bodyParser());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // GET to /api/search -> jobs router -> jobs controller -> searchJobs, api request
@@ -19,10 +18,15 @@ app.use(cookieParser());
 // POST to /api/savedJobs -> jobs router -> jobs controller -> create job in database with given user ID
 // DELETE to /api/savedJobs -> jobs router -> jobs controller -> delete saved job
 // PUT/PATCH to /api/savedJobs -> jobs router -> jobs controller -> edit job info (notes)
-// POST to /api/users -> user router -> users controller -> createUser in database
+// POST to /api/users/signup -> user router -> users controller -> createUser in database
 // POST to /api/contact -> contact router -> contact controller -> createContact in database
 // GET to /api/contact -> contact router -> contact controller -> getContact frrm database with queried job
+// PUT/PATCH /api/contact -> contact router -> contact controller -> changeContact in database
+// POST /api/users/login -> sessionController -> verify user, start session
 
+app.use('/api/search', jobRouter, (req, res) => {
+  console.log('Back in /search server.js');
+});
 // app.use('/api/savedJobs', jobRouter, (req, res) => {
 //   return res.status(200).json();
 // });

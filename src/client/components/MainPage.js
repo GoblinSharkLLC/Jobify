@@ -1,34 +1,35 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Job from "./Job";
+import React, { useState } from 'react';
+import axios from 'axios';
+import Job from './Job';
+const placeHolderJobs = [
+  {
+    title: 'Engineering',
+    company: 'Tech Corp',
+    url: 'url',
+    city: 'city',
+    state: 'state',
+    status: 'status',
+    posted: 'posted',
+    description: 'description',
+    contact: 'Mr.',
+    notes: 'Whats up',
+  },
+  {
+    title: 'Engineering',
+    company: 'Tech Corp',
+    url: 'url',
+    city: 'city',
+    state: 'state',
+    status: 'status',
+    posted: 'posted',
+    description: 'description',
+    contact: 'Mr.',
+    notes: '',
+  },
+];
 
 export default function MainPage() {
-  const [jobs, setJobs] = useState([
-    {
-      title: "Engineering",
-      company: "Tech Corp",
-      url: "url",
-      city: "city",
-      state: "state",
-      status: "status",
-      posted: "posted",
-      description: "description",
-      contact: "Mr.",
-      notes: "Whats up",
-    },
-    {
-      title: "Engineering",
-      company: "Tech Corp",
-      url: "url",
-      city: "city",
-      state: "state",
-      status: "status",
-      posted: "posted",
-      description: "description",
-      contact: "Mr.",
-      notes: "",
-    },
-  ]);
+  const [jobs, setJobs] = useState(placeHolderJobs);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import Contact from "./Contact";
-import axios from "axios";
+import React, { useState } from 'react';
+import Contact from './Contact';
+import axios from 'axios';
 
 export default function Job({ job }) {
   const {
+    id,
     title,
+    city,
     company,
     url,
-    city,
     state,
     status,
     posted,
@@ -21,7 +22,7 @@ export default function Job({ job }) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
       axios
-        .delete("/api/savedJobs", {
+        .delete('/api/savedJobs', {
           data: { title, company, url },
         })
         .then((response) => {
@@ -32,7 +33,7 @@ export default function Job({ job }) {
       // if the user wants to save Job
       // POST to /api/savedJobs
       axios
-        .post("/api/savedJobs", {
+        .post('/api/savedJobs', {
           data: job,
         })
         .then((response) => {
@@ -42,7 +43,7 @@ export default function Job({ job }) {
     }
   };
   return (
-    <div>
+    <div className="job-container">
       <b>{title}</b>
       <p>{company}</p>
       <p>

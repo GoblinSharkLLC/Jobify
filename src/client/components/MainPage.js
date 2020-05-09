@@ -52,10 +52,10 @@ export default function MainPage() {
           <Button onClick={handleSubmit}>Search</Button>
         </form>
       </div>
-      <p>Display Jobs</p>
+      <p>Display Jobs</p>{' '}
       <div id="find-jobs-display">
         {jobs.map((job, idx) => {
-          return <Job key={`job${idx}`} job={job} />;
+          return <Job key={`job${idx}`} job={job} savedContainer={false} />;
         })}
       </div>
     </div>

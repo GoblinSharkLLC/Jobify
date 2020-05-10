@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button, Fade } from "react-bootstrap";
 
 export default function Login({ setUserId, setUserName }) {
+  console.log(typeof setUserName, typeof setUserId);
   return (
     <div className="login">
       <Form>

@@ -9,8 +9,8 @@ const contactRouter = require('./routers/contactRouter');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express());
-app.use(bodyParser());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // GET to /api/search -> jobs router -> jobs controller -> searchJobs, api request
@@ -18,30 +18,25 @@ app.use(cookieParser());
 // POST to /api/savedJobs -> jobs router -> jobs controller -> create job in database with given user ID
 // DELETE to /api/savedJobs -> jobs router -> jobs controller -> delete saved job
 // PUT/PATCH to /api/savedJobs -> jobs router -> jobs controller -> edit job info (notes)
-// POST to /api/users -> user router -> users controller -> createUser in database
+// POST to /api/users/signup -> user router -> users controller -> createUser in database
 // POST to /api/contact -> contact router -> contact controller -> createContact in database
 // GET to /api/contact -> contact router -> contact controller -> getContact frrm database with queried job
+// PUT/PATCH /api/contact -> contact router -> contact controller -> changeContact in database
+// POST /api/users/login -> sessionController -> verify user, start session
 
-app.use('/api/savedJobs', jobRouter, (req, res) => {
-  return res.status(200).json();
+app.use('/api/search', jobRouter, (req, res) => {
+  console.log('Back in /search server.js');
 });
+// app.use('/api/savedJobs', jobRouter, (req, res) => {
+//   return res.status(200).json();
+// });
 app.use('/api/users', userRouter, (req, res) => {
-  return res.status(200).json();
+  console.log('Back in server.js');
+  // return res.status(200).send('Returning from /api/users in server.js');
 });
-app.use('/api/contacts', contactRouter, (req, res) => {
-  return res.status(200).json();
-});
-
-app.use(
-  '/signup',
-  // HASH PW (BCRYPT)
-  // STORE USER IN DB
-  // JWT
-  // SET ISLOGGEDIN
-  (req, res) => {
-    return res.status(200).json();
-  }
-);
+// app.use('/api/contacts', contactRouter, (req, res) => {
+//   return res.status(200).json();
+// });
 
 app.use('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../../index.html'));
@@ -58,7 +53,7 @@ if (process.env.NODE_env === 'production') {
   });
 }
 
-app.use((req, res) => {
+app.use('/', (req, res) => {
   res.status(404).send('Wrong way, turn around: ');
 });
 

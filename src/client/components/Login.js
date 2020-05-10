@@ -1,7 +1,7 @@
-import React from 'react';
-import { Form, Button, Fade } from 'react-bootstrap';
+import React from "react";
+import { Form, Button, Fade } from "react-bootstrap";
 
-export default function Login() {
+export default function Login({ setUserId, setUserName }) {
   return (
     <div className="login">
       <Form>

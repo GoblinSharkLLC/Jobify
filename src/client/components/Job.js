@@ -18,7 +18,7 @@ export default function Job({ job, savedContainer }) {
   } = job;
   const [saved, setSaved] = useState([false]);
   const updateButton = async () => {
-    if (saved) {
+    if (saved === true) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
       try {
@@ -29,7 +29,6 @@ export default function Job({ job, savedContainer }) {
       } catch (err) {
         console.log(err);
       }
-      setSaved(false);
     } else {
       // if the user wants to save Job
       // POST to /api/savedJobs
@@ -41,7 +40,6 @@ export default function Job({ job, savedContainer }) {
       } catch (err) {
         console.log(err);
       }
-      setSaved(true);
     }
   };
 
@@ -57,18 +55,16 @@ export default function Job({ job, savedContainer }) {
         {city}, {state}
       </p>
       {savedContainer === true ? (
-        <p>
-          <form>
-            <label htmlFor="status">Status: </label>
-            <select id="status" name="statusName">
-              <option value="Need to Apply">Need to Apply</option>
-              <option value="Applied">Applied</option>
-              <option value="Interview Scheduled">Interview Scheduled</option>
-              <option value="Offer">Offer</option>
-              <option value="Rejected">Rejected</option>
-            </select>
-          </form>
-        </p>
+        <form>
+          <label htmlFor="status">Status: </label>
+          <select id="status" name="statusName">
+            <option value="Need to Apply">Need to Apply</option>
+            <option value="Applied">Applied</option>
+            <option value="Interview Scheduled">Interview Scheduled</option>
+            <option value="Offer">Offer</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </form>
       ) : null}
       <ul>
         <li>{description.slice(0, 100) + "..."}</li>

@@ -5,18 +5,28 @@ const jobController = require('../controllers/JobController.js');
 const router = express.Router();
 
 router.get('/', jobController.searchJobs, (req, res, next) => {
-  const { location, description } = req.query;
-  axios({
-    method: 'get',
-    url: 'https://jobs.github.com/positions.json?',
-    data: {
-      description,
-      location,
-    },
-  });
-  return next();
-});
+  // const { location, title as description } = req.query;
+  const location = 'New York';
+  const description = 'Python';
 
+  axios
+    .get('https://jobs.github.com/positions.json?', {
+      params: {
+        description,
+        location,
+      },
+    })
+    .then((result) => {
+      console.log(result.data);
+      return res.status(200).json(result.data);
+    })
+    .catch((err) => {
+      return next({
+        log: 'Error fetching job from API',
+        message: { err: 'Error fetching api: ', err },
+      });
+    });
+});
 // https://jobs.github.com/positions.json?description=python&location=new+york
 
 router.post('/', jobController.saveJob, (req, res, next) => {

@@ -10,7 +10,7 @@ export default function JobContainer() {
       url: "url",
       city: "city",
       state: "state",
-      status: "PENDING",
+      status: "status",
       posted: "posted",
       description: "description",
       contact: { name: "John", email: "John@email", number: "8398080" },
@@ -19,7 +19,7 @@ export default function JobContainer() {
   ]);
   const getSavedJob = async () => {
     try {
-      const result = await axios.get("/api/getUserJob", {
+      const result = await axios.get("url for saved job", {
         data: "user's id",
       });
       setSavedJobs(result);

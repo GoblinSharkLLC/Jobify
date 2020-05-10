@@ -1,4 +1,44 @@
 const express = require('express');
-const userController = require('../controllers/userController.js');
+const SessionController = require('../controllers/SessionController');
+const CookieController = require('../controllers/CookieController');
+const UserController = require('../controllers/UserController');
+const JobController = require('../controllers/JobController');
 
 const router = express.Router();
+
+// Register a new user
+router.post(
+  '/register',
+  // UserController.checkDuplicates,
+  UserController.createUser,
+  SessionController.signToken,
+  CookieController.setSessionCookie,
+  (req, res) => {
+    res.send('Created user');
+  }
+);
+
+// Login, verify user credentials
+router.post(
+  '/login',
+  UserController.verifyUser,
+  SessionController.signToken,
+  // CookieController.setSessionCookie, // Not using cookies right now
+  // SessionController.isLoggedIn,
+  (req, res) => {
+    // console.log('Back in user/post to /login');
+    return res.status(200).send('Sending from /login');
+  }
+);
+
+// Query the db for users saved jobs and send them back to the client.
+router.get(
+  '/jobs',
+  SessionController.isLoggedIn,
+  JobController.getUserJobs,
+  (req, res) => {
+    return res.status(200);
+  }
+);
+
+module.exports = router;

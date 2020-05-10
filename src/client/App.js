@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavPanel from "./components/NavPanel";
-import MainPage from "./components/MainPage";
-import JobContainer from "./components/JobContainer";
-import Login from "./components/Login";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NavPanel from './components/NavPanel';
+import MainPage from './components/MainPage';
+import JobContainer from './components/JobContainer';
+import Login from './components/Login';
 
 export default function App() {
   const [userId, setUserId] = useState(0);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   return (
     <div>
       <NavPanel />

@@ -8,6 +8,7 @@ export default function Job({ job, savedContainer }) {
     title,
     city,
     company,
+    image,
     url,
     state,
     status,
@@ -51,6 +52,7 @@ export default function Job({ job, savedContainer }) {
     <div className="job-container">
       <p className="job-header">{title}</p>
       <p className="text-muted">At: {company}</p>
+      <img src={image} alt="company logo" className="logo-image" />
       <p>
         {city}, {state}
       </p>

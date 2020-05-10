@@ -3,7 +3,7 @@ $secondaryColor: lighten($primaryColor, 10%);
 $tertiaryColor: lighten($secondaryColor, 10%);
 
 body {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   background-color: #dfdfdf;
 }
 #find-jobs-display {
@@ -52,4 +52,8 @@ body {
   border-radius: 10px;
   border: none;
   outline: none;
+}
+
+.logo-image {
+  max-height: 100px;
 }

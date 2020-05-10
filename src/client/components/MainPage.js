@@ -33,15 +33,18 @@ const placeHolderJobs = [
 
 export default function MainPage() {
   const [jobs, setJobs] = useState(placeHolderJobs);
+  const [title, setTitle] = useState("");
+  const [loc, setLoc] = useState("");
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const query = event.target.value;
-    //how does this object look?????
-    const result = await axios.get("/api/search/", {
+    const saveInput = [title, loc];
+    setTitle("");
+    setLoc("");
+    console.log(saveInput);
+    const result = await axios.get("/api/search", {
       params: {
-        description: query.query1,
-        location: query.query2,
+        description: saveInput[0],
+        location: saveInput[1],
       },
     });
     setJobs(result);
@@ -49,13 +52,34 @@ export default function MainPage() {
     // axios request to server with data
     // save returnValues to state
   };
+  const handleChange = (event) => {
+    event.preventDefault();
+    event.persist();
+    if (event.target.name === "query1") {
+      setTitle(event.target.value);
+    } else {
+      setLoc(event.target.value);
+    }
+  };
 
   return (
     <div>
       <div id="search-container">
         <form id="job-search">
-          <input type="text" name="query1" placeholder="Job Title..." />
-          <input type="text" name="query2" placeholder="Location..." />
+          <input
+            type="text"
+            name="query1"
+            placeholder="Job Title..."
+            value={title}
+            onInput={handleChange}
+          />
+          <input
+            type="text"
+            name="query2"
+            placeholder="Location..."
+            value={loc}
+            onInput={handleChange}
+          />
           <Button onClick={handleSubmit}>Search</Button>
         </form>
       </div>

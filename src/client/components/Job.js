@@ -23,11 +23,7 @@ export default function Job({ job, savedContainer }) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
       try {
-<<<<<<< HEAD
         await axios.delete("/api/savedJobs", {
-=======
-        await axios.delete('/api/savedJobs', {
->>>>>>> 5c1ffe067795c96f20a5135b9431b27320fcf79e
           data: { title, company, url },
         });
         setSaved(false);
@@ -39,11 +35,7 @@ export default function Job({ job, savedContainer }) {
       // if the user wants to save Job
       // POST to /api/savedJobs
       try {
-<<<<<<< HEAD
         axios.post("/api/savedJobs", {
-=======
-        axios.post('/api/savedJobs', {
->>>>>>> 5c1ffe067795c96f20a5135b9431b27320fcf79e
           data: job,
         });
         setSaved(true);

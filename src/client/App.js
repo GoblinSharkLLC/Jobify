@@ -8,7 +8,7 @@ import Login from "./components/Login";
 export default function App() {
   const [userId, setUserId] = useState(0);
   const [userName, setUserName] = useState("");
-  const [jwt, setUserJwt] = useState("");
+  const [jwt, setUserJwt] = useState(localStorage.getItem("jwt"));
   return (
     <div>
       <NavPanel />
@@ -23,6 +23,7 @@ export default function App() {
               setUserId={setUserId}
               setUserName={setUserName}
               setUserJwt={setUserJwt}
+              jwt={jwt}
             />
           )}
         />

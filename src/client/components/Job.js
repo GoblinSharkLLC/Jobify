@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Contact from './Contact';
 import axios from 'axios';
 
-export default function Job({ job, savedContainer }) {
+// Presentation component for displaying the information of a job
+export default function Job({ job, savedContainer, saveJob, deleteJob }) {
   const {
     id,
     title,
@@ -17,42 +18,18 @@ export default function Job({ job, savedContainer }) {
     contact,
     notes,
   } = job;
-  const [saved, setSaved] = useState([false]);
-  const updateButton = async () => {
-    if (saved === true) {
-      // if the user wants to delete Job
-      // DELETE to /api/savedJobs
-      try {
-        await axios.delete('/api/users/jobs', {
-          data: { title, company, url },
-        });
-        setSaved(false);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      // if the user wants to save Job
-      // POST to /api/savedJobs
-      try {
-        axios.post('/api/users/jobs', {
-          data: job,
-        });
-        setSaved(true);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  // state hook to denote whether a job has been saved or not
+  const [saved, setSaved] = useState(false);
 
   const formatUrl = (url) => {
     const noHttp = url.substr(url.indexOf('www.'));
     return noHttp.substr(0, noHttp.indexOf('/'));
   };
+
   return (
     <div className="job-container">
       <p className="job-header">{title}</p>
       <p className="text-muted">At: {company}</p>
-      {/* <img src={image} alt="company logo" className="logo-image" /> */}
       <p>
         {city}, {state}
       </p>
@@ -73,17 +50,33 @@ export default function Job({ job, savedContainer }) {
       </ul>
       <a href={url}>{formatUrl(url)}</a>
       <aside>{posted}</aside>
-      {savedContainer === true ? (
+      {savedContainer ? (
         <div>
           <Contact contact={contact} />
         </div>
       ) : null}
-      {savedContainer === true ? <textarea defaultValue={notes} /> : null}
-      {saved === true || savedContainer === true ? (
-        <input type="button" value="Delete Job" onClick={updateButton} />
-      ) : (
-        <input type="button" value="Save Job" onClick={updateButton} />
-      )}
+      {savedContainer ? <textarea defaultValue={notes} /> : null}
+
+      {/* Logic to determine whether to display the save  r delee button*/}
+      {localStorage.getItem('jwt') && !savedContainer ? (
+        <input
+          type="button"
+          value="Save Job"
+          onClick={() => {
+            saveJob();
+            setSaved(true);
+          }}
+        />
+      ) : localStorage.getItem('jwt') && savedContainer ? (
+        <input
+          type="button"
+          value="Delete Job"
+          onClick={() => {
+            deleteJob();
+            setSaved(false);
+          }}
+        />
+      ) : null}
     </div>
   );
 }

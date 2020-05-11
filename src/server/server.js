@@ -1,29 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const jobRouter = require('./routers/jobRouter');
 const userRouter = require('./routers/userRouter');
-// const contactRouter = require('./routers/contactRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 /*
 GET to /api/search -> jobs router -> jobs controller -> searchJobs, api request
-GET to /api/savedJobs -> jobs router -> jobs controller -> ping database for jobs with the queried user ID
-POST to /api/savedJobs -> jobs router -> jobs controller -> create job in database with given user ID
-DELETE to /api/savedJobs -> jobs router -> jobs controller -> delete saved job
-PUT/PATCH to /api/savedJobs -> jobs router -> jobs controller -> edit job info (notes)
-POST to /api/users/signup -> user router -> users controller -> createUser in database
-POST to /api/contact -> contact router -> contact controller -> createContact in database
-GET to /api/contact -> contact router -> contact controller -> getContact frrm database with queried job
-PUT/PATCH /api/contact -> contact router -> contact controller -> changeContact in database
-POST /api/users/login -> sessionController -> verify user, start session
+GET to /api/users/jobs -> user router -> jobs controller -> ping database for jobs with the queried user ID
+POST to /api/users/jobs -> user router -> jobs controller -> saveJob, create job in database with given user ID
+DELETE to /api/users/jobs -> user router -> jobs controller -> deleteJob, delete saved job
+PUT to /api//users/jobs -> user router -> jobs controller -> updateJob, edit job info (notes, contact, status)
+POST to /api/users/signup -> user router -> users controller -> createUser, signToken to start a session with newly registered user
+POST /api/users/login -> user router -> user controller, sessionController -> verifyUser, signToken to start session with existing user
 */
 
 // Routing a request to search for jobs.
@@ -72,6 +66,7 @@ app.use((err, req, res) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });

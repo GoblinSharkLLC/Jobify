@@ -4,9 +4,11 @@ const db = require('../database.js');
 const jobController = {};
 
 jobController.searchJobs = (req, res, next) => {
+  // Destructure the search query sent from the frontend
   const { location, title: description } = req.query;
-  console.log('Entering searchJobs');
+  // console.log('Entering searchJobs');
 
+  // Send search request to the github API with the destructured search parameters.
   axios
     .get('https://jobs.github.com/positions.json?', {
       params: {
@@ -15,7 +17,7 @@ jobController.searchJobs = (req, res, next) => {
       },
     })
     .then((result) => {
-      console.log(result.data);
+      // console.log(result.data);
       return res.status(200).json(result.data);
     })
     .catch((err) => {
@@ -28,7 +30,8 @@ jobController.searchJobs = (req, res, next) => {
 };
 
 jobController.saveJob = (req, res, next) => {
-  console.log('This is req.body in saveJob: ', req.body);
+  // console.log('This is req.body in saveJob: ', req.body);
+  // Destructure job parameters from the save job request
   const {
     title,
     city,
@@ -43,8 +46,10 @@ jobController.saveJob = (req, res, next) => {
     notes,
   } = req.body.job;
 
-  const { userId } = res.locals.currentUser; // Pulling out id of currentUser from res locals
+  // Take the userId that was derived from the accessToken in SessionController.isLoggedIn
+  const { userId } = res.locals.currentUser;
 
+  // Query the database with the destructured job parameters and derived userId.
   const text = `INSERT INTO jobs(title, city, company, image, url, state, status, posted, description, contact, notes, user_id) 
   VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
   const values = [
@@ -78,6 +83,8 @@ jobController.saveJob = (req, res, next) => {
 };
 
 jobController.getUserJobs = (req, res, next) => {
+  // Take the userId that was derived from the accessToken in SessionController.isLoggedIn
+  // Query the database with the derived userId and return all jobs associated with that user.
   const { userId } = res.locals.currentUser;
   const text = `SELECT * FROM jobs WHERE user_id=$1`;
   const values = [userId];
@@ -98,7 +105,8 @@ jobController.getUserJobs = (req, res, next) => {
 };
 
 jobController.updateJob = (req, res, next) => {
-  // const { userId } = res.locals.currentUser;
+  // Send an update request to the database with the destructured job ID and parameters that may have changed.
+  // Status, contact, and notes are the only parameters that are setup on the frontend to change.
   const { id, status, contact, notes } = req.body.job;
   const text = `UPDATE jobs
                 SET status=$1, contact=$2, notes=$3
@@ -116,7 +124,8 @@ jobController.updateJob = (req, res, next) => {
 };
 
 jobController.deleteJob = (req, res, next) => {
-  console.log('Entering deleteJob');
+  // console.log('Entering deleteJob');
+  // Send a delete query to the database with the destructured job ID
   const { id: jobId } = req.body.job;
   const text = `DELETE FROM jobs WHERE id=$1`;
   const values = [jobId];

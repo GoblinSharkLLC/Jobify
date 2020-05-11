@@ -1,18 +1,15 @@
 const express = require('express');
 const SessionController = require('../controllers/SessionController');
-const CookieController = require('../controllers/CookieController');
 const UserController = require('../controllers/UserController');
 const JobController = require('../controllers/JobController');
 
 const router = express.Router();
 
-// Register a new user
+// Register a new user and start a new session with a JWT
 router.post(
   '/register',
-  // UserController.checkDuplicates,
   UserController.createUser,
   SessionController.signToken,
-  // CookieController.setSessionCookie,
   (req, res) => {
     console.log('Registered User');
     console.log(res.locals.token);
@@ -20,7 +17,7 @@ router.post(
   }
 );
 
-// Login, verify user credentials
+// Login, verify user credentials and start session with a JWT
 router.post(
   '/login',
   UserController.verifyUser,
@@ -32,8 +29,8 @@ router.post(
 );
 
 // Query the db for users saved jobs and send them back to the client.
-router.get(
-  '/jobs',
+router.post(
+  '/savedJobs',
   SessionController.isLoggedIn,
   JobController.getUserJobs,
   (req, res) => {
@@ -41,6 +38,7 @@ router.get(
   }
 );
 
+// save job post to database
 router.post(
   '/jobs',
   SessionController.isLoggedIn,
@@ -50,6 +48,7 @@ router.post(
   }
 );
 
+// change the saved jobs' contact/state/notes in database
 router.put(
   '/jobs',
   SessionController.isLoggedIn,
@@ -59,6 +58,7 @@ router.put(
   }
 );
 
+// delete one of the saved jobs from the database
 router.delete(
   '/jobs',
   SessionController.isLoggedIn,

@@ -16,10 +16,7 @@ export default function Login({ setLogin, status }) {
       })
       .then((response) => {
         // console.log("Response data", response.data);
-        window.localStorage.setItem(
-          'jwt',
-          JSON.stringify(response.data.accessToken)
-        );
+        window.localStorage.setItem('jwt', response.data.accessToken);
         // redirect to find/saved jobs
         setLogin(true);
         history.push('/');

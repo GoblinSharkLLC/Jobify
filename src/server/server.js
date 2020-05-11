@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use('/api/search', jobRouter, (req, res) => {
   console.log('Back in /search server.js');
 });
+
 // app.use('/api/savedJobs', jobRouter, (req, res) => {
 //   return res.status(200).json();
 // });

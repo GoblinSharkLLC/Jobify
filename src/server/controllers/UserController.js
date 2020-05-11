@@ -56,19 +56,19 @@ userController.verifyUser = async (req, res, next) => {
     });
   }
 
-  const text = 'SELECT password FROM users WHERE username = $1';
+  const text = 'SELECT password, id FROM users WHERE username = $1';
   const values = [username.toLowerCase()];
 
   // Query the data with the username taken from the request body and find the stored password
   db.query(text, values).then((data) => {
     // console.log('Data returned from database in verifyUser-> ', data);
     const hashedPw = data.rows[0].password;
-
+    const userId = data.rows[0].id;
     // Compare stored password to given password from request body (frontend login page)
     bcrypt.compare(password, hashedPw, (err, result) => {
       console.log('Result of bcrypt -> ', result);
       if (result === true) {
-        res.locals.user = { username };
+        res.locals.user = { username, userId };
         return next();
       }
       return res.redirect('/signup');

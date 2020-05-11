@@ -24,7 +24,6 @@ router.post(
   '/login',
   UserController.verifyUser,
   SessionController.signToken,
-  // CookieController.setSessionCookie, // Not using cookies right now
   // SessionController.isLoggedIn,
   (req, res) => {
     // console.log('Back in user/post to /login');
@@ -37,6 +36,15 @@ router.get(
   '/jobs',
   SessionController.isLoggedIn,
   JobController.getUserJobs,
+  (req, res) => {
+    return res.status(200);
+  }
+);
+
+router.post(
+  '/jobs',
+  SessionController.isLoggedIn,
+  JobController.saveJob,
   (req, res) => {
     return res.status(200);
   }

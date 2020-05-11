@@ -7,11 +7,11 @@ const SessionController = {};
 SessionController.signToken = (req, res, next) => {
   console.log('Entering signToken');
   try {
-    const { username } = res.locals.user;
-    const accessToken = jwt.sign({ username }, TOKEN_SECRET, {
+    const { username, id } = res.locals.user;
+    const accessToken = jwt.sign({ username, id }, TOKEN_SECRET, {
       expiresIn: '1800s',
     });
-    res.locals.token = { accessToken: accessToken };
+    res.locals.token = { accessToken };
     console.log('Created token for ', username, ': ', res.locals.token);
     return next();
   } catch (err) {
@@ -24,11 +24,13 @@ SessionController.signToken = (req, res, next) => {
 };
 
 SessionController.isLoggedIn = (req, res, next) => {
-  const { token } = res.cookie;
+  const { accessToken: token } = req.body;
   try {
     jwt.verify(token, TOKEN_SECRET, (err, decoded) => {
       console.log('decoded->', decoded);
-      if (res.locals) console.log('hello');
+      res.locals.currentUser = decoded.username;
+      // if (res.locals) console.log('hello');
+      return next();
     });
   } catch (err) {}
 };

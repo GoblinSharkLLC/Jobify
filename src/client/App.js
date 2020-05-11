@@ -22,10 +22,14 @@ export default function App() {
             <Login
               setUserId={setUserId}
               setUserName={setUserName}
-              setUserJwt={setUserJwt}
-              jwt={jwt}
+              status="login"
             />
           )}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={() => <Login setUserName={setUserName} status="register" />}
         />
       </Switch>
     </div>

@@ -25,9 +25,14 @@ export default function NavPanel({ userName }) {
             {userName ? (
               <NavItem>{userName}</NavItem>
             ) : (
-              <Button variant="outline-primary" as={Link} to="/login">
-                Log In / Sign Up
-              </Button>
+              <div>
+                <Button variant="outline-primary" as={Link} to="/login">
+                  Log In
+                </Button>
+                <Button variant="outline-primary" as={Link} to="/signup">
+                  Sign Up
+                </Button>
+              </div>
             )}
           </Col>
         </Navbar>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Contact from "./Contact";
-import axios from "axios";
+import React, { useState } from 'react';
+import Contact from './Contact';
+import axios from 'axios';
 
 export default function Job({ job, savedContainer }) {
   const {
@@ -23,7 +23,7 @@ export default function Job({ job, savedContainer }) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
       try {
-        await axios.delete("/api/savedJobs", {
+        await axios.delete('/api/savedJobs', {
           data: { title, company, url },
         });
         setSaved(false);
@@ -34,7 +34,7 @@ export default function Job({ job, savedContainer }) {
       // if the user wants to save Job
       // POST to /api/savedJobs
       try {
-        axios.post("/api/savedJobs", {
+        axios.post('/api/savedJobs', {
           data: job,
         });
         setSaved(true);
@@ -45,8 +45,8 @@ export default function Job({ job, savedContainer }) {
   };
 
   const formatUrl = (url) => {
-    const noHttp = url.substr(url.indexOf("www."));
-    return noHttp.substr(0, noHttp.indexOf("/"));
+    const noHttp = url.substr(url.indexOf('www.'));
+    return noHttp.substr(0, noHttp.indexOf('/'));
   };
   return (
     <div className="job-container">
@@ -69,7 +69,7 @@ export default function Job({ job, savedContainer }) {
         </form>
       ) : null}
       <ul>
-        <li>{description.slice(0, 100) + "..."}</li>
+        <li>{description.slice(0, 100) + '...'}</li>
       </ul>
       <a href={url}>{formatUrl(url)}</a>
       <aside>{posted}</aside>

@@ -15,6 +15,7 @@ router.post(
   // CookieController.setSessionCookie,
   (req, res) => {
     console.log('Registered User');
+    console.log(res.locals.token);
     res.status(200).json(res.locals.token);
   }
 );
@@ -24,7 +25,6 @@ router.post(
   '/login',
   UserController.verifyUser,
   SessionController.signToken,
-  // SessionController.isLoggedIn,
   (req, res) => {
     // console.log('Back in user/post to /login');
     return res.status(200).json(res.locals.token);

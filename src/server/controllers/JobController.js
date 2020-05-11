@@ -22,7 +22,7 @@ jobController.searchJobs = (req, res, next) => {
     .catch((err) => {
       return next({
         log: 'Error fetching job from API',
-        message: { err: 'Error fetching api: ', err },
+        message: { err: `Error fetching api: ${err}` },
       });
     });
   // https://jobs.github.com/positions.json?description=python&location=new+york

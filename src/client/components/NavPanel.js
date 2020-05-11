@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, NavItem, Nav, Col, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Navbar, NavItem, Nav, Col, Button } from "react-bootstrap";
 
 export default function NavPanel({ userName }) {
   return (
@@ -26,7 +26,7 @@ export default function NavPanel({ userName }) {
               <NavItem>{userName}</NavItem>
             ) : (
               <Button variant="outline-primary" as={Link} to="/login">
-                Log In
+                Log In / Sign Up
               </Button>
             )}
           </Col>

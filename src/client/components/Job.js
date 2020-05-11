@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Contact from './Contact';
-import axios from 'axios';
+import React, { useState } from "react";
+import Contact from "./Contact";
+import axios from "axios";
 
 export default function Job({ job, savedContainer }) {
   const {
@@ -8,6 +8,7 @@ export default function Job({ job, savedContainer }) {
     title,
     city,
     company,
+    image,
     url,
     state,
     status,
@@ -16,53 +17,59 @@ export default function Job({ job, savedContainer }) {
     contact,
     notes,
   } = job;
-  console.log(savedContainer);
   const [saved, setSaved] = useState([false]);
   const updateButton = async () => {
-    if (saved) {
+    if (saved === true) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
       try {
-        await axios.delete('/api/savedJobs', {
+        await axios.delete("/api/savedJobs", {
           data: { title, company, url },
         });
         setSaved(false);
       } catch (err) {
         console.log(err);
       }
-      setSaved(false);
     } else {
       // if the user wants to save Job
       // POST to /api/savedJobs
       try {
-        axios.post('/api/savedJobs', {
+        axios.post("/api/savedJobs", {
           data: job,
         });
         setSaved(true);
       } catch (err) {
         console.log(err);
       }
-      setSaved(true);
     }
   };
 
   const formatUrl = (url) => {
-    const noHttp = url.substr(url.indexOf('www.'));
-    return noHttp.substr(0, noHttp.indexOf('/'));
+    const noHttp = url.substr(url.indexOf("www."));
+    return noHttp.substr(0, noHttp.indexOf("/"));
   };
   return (
     <div className="job-container">
       <p className="job-header">{title}</p>
       <p className="text-muted">At: {company}</p>
+      <img src={image} alt="company logo" className="logo-image" />
       <p>
         {city}, {state}
       </p>
-      <p>
-        <b>Status: </b>
-        {status}
-      </p>
+      {savedContainer === true ? (
+        <form>
+          <label htmlFor="status">Status: </label>
+          <select id="status" name="statusName">
+            <option value="Need to Apply">Need to Apply</option>
+            <option value="Applied">Applied</option>
+            <option value="Interview Scheduled">Interview Scheduled</option>
+            <option value="Offer">Offer</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </form>
+      ) : null}
       <ul>
-        <li>{description.slice(0, 100) + '...'}</li>
+        <li>{description.slice(0, 100) + "..."}</li>
       </ul>
       <a href={url}>{formatUrl(url)}</a>
       <aside>{posted}</aside>

@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import Job from './Job';
-import axios from 'axios';
+import React, { useState } from "react";
+import Job from "./Job";
+import axios from "axios";
 
 export default function JobContainer() {
   const [savedJobs, setSavedJobs] = useState([
     {
-      title: 'Engineering',
-      company: 'Tech Corp',
-      url: 'url',
-      city: 'city',
-      state: 'state',
-      status: 'status',
-      posted: 'posted',
-      description: 'description',
-      contact: { name: 'John', email: 'John@email', number: '8398080' },
-      notes: 'Whats up',
+      title: "Engineering",
+      company: "Tech Corp",
+      url: "url",
+      city: "city",
+      state: "state",
+      status: "status",
+      posted: "posted",
+      description: "description",
+      contact: { name: "John", email: "John@email", number: "8398080" },
+      notes: "Whats up",
     },
   ]);
   const getSavedJob = async () => {
     try {
-      const result = await axios.get('url for saved job', {
+      const result = await axios.get("url for saved job", {
         data: "user's id",
       });
       setSavedJobs(result);

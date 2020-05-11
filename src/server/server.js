@@ -55,7 +55,7 @@ if (process.env.NODE_env === 'production') {
 }
 
 app.use('/', (req, res) => {
-  res.status(404).send('Wrong way, turn around: ');
+  res.status(404).send('Wrong way, turn around.');
 });
 
 app.use((err, req, res) => {
@@ -65,7 +65,7 @@ app.use((err, req, res) => {
     message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign(...defaultErr, ...err);
-  console.log(errorObj.log);
+  console.log('Global error handler: ', errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 

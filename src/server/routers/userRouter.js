@@ -50,4 +50,13 @@ router.post(
   }
 );
 
+router.put(
+  '/jobs',
+  SessionController.isLoggedIn,
+  JobController.updateJob,
+  (req, res) => {
+    return res.status(200);
+  }
+);
+
 module.exports = router;

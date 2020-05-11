@@ -7,8 +7,9 @@ const SessionController = {};
 SessionController.signToken = (req, res, next) => {
   console.log('Entering signToken');
   try {
-    const { username, id } = res.locals.user;
-    const accessToken = jwt.sign({ username, id }, TOKEN_SECRET, {
+    const { username, userId } = res.locals.user;
+    console.log('This is the id before signing -> ', userId);
+    const accessToken = jwt.sign({ userId }, TOKEN_SECRET, {
       expiresIn: '1800s',
     });
     res.locals.token = { accessToken };
@@ -28,7 +29,7 @@ SessionController.isLoggedIn = (req, res, next) => {
   try {
     jwt.verify(token, TOKEN_SECRET, (err, decoded) => {
       console.log('decoded->', decoded);
-      res.locals.currentUser = decoded.username;
+      res.locals.currentUser = decoded;
       // if (res.locals) console.log('hello');
       return next();
     });

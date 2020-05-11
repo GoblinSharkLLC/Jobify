@@ -33,7 +33,9 @@ SessionController.isLoggedIn = (req, res, next) => {
       // if (res.locals) console.log('hello');
       return next();
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log('Error in isLoggedIn');
+  }
 };
 
 module.exports = SessionController;

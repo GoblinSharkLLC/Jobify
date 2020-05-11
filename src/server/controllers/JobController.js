@@ -31,7 +31,6 @@ jobController.searchJobs = (req, res, next) => {
 jobController.saveJob = (req, res, next) => {
   console.log('This is req.body in saveJob: ', req.body);
   const {
-    id,
     title,
     city,
     company,
@@ -112,13 +111,26 @@ jobController.updateJob = (req, res, next) => {
       console.log('This is the error in getUserJobs', err);
       return next({
         log: 'Error in getUserJobs',
-        message: { error: 'Error from database finding saved jobs: ', err },
+        message: { error: `Error from database finding saved jobs: ${err}` },
       });
     });
 };
 
 jobController.deleteJob = (req, res, next) => {
-  return next();
+  console.log('Entering deleteJob');
+  const { id: jobId } = req.body.job;
+  const text = `DELETE FROM jobs WHERE id=$1`;
+  const values = [jobId];
+  db.query(text, values)
+    .then(() => res.status(200).send(`Job ${jobId} deleted`))
+    .catch((err) => {
+      return next({
+        log: 'Error in DeleteJob',
+        message: {
+          error: `Error from db while deleting the saved job: ${err}`,
+        },
+      });
+    });
 };
 
 module.exports = jobController;

@@ -5,8 +5,11 @@ import { Button } from "react-bootstrap";
 
 const placeHolderJobs = [
   {
+    id: 1,
     title: "Lead Front End Developer",
     company: "FaceBook",
+    image:
+      "https://imagoearth.org/wp-content/uploads/2019/12/facebook-logo.png",
     url: "https://www.facebook.com/hire",
     city: "New York",
     state: "NY",
@@ -17,8 +20,10 @@ const placeHolderJobs = [
     notes: "Whats up",
   },
   {
+    id: 2,
     title: "Mid-Level Software Engineer at Oracle",
     company: "Oracle Inc.",
+    image: "",
     url: "Https://www.Oracle.com/this/is/a/cool/job",
     city: "Boston",
     state: "MA",

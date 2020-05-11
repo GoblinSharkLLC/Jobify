@@ -1,18 +1,19 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-const TOKEN_SECRET = "weneedajob";
+const TOKEN_SECRET = 'weneedajob';
 const SessionController = {};
 
 // Start session?
 SessionController.signToken = (req, res, next) => {
-  console.log("Entering signToken");
+  console.log('Entering signToken');
   try {
-    const { username } = res.locals.user;
-    const accessToken = jwt.sign({ username }, TOKEN_SECRET, {
-      expiresIn: "1800s",
+    const { username, userId } = res.locals.user;
+    console.log('This is the id before signing -> ', userId);
+    const accessToken = jwt.sign({ userId }, TOKEN_SECRET, {
+      expiresIn: '1800s',
     });
-    res.locals.token = { accessToken: accessToken };
-    // console.log('Created token for ', username, ': ', res.locals.token);
+    res.locals.token = { accessToken };
+    console.log('Created token for ', username, ': ', res.locals.token);
     return next();
   } catch (err) {
     return next({
@@ -24,13 +25,17 @@ SessionController.signToken = (req, res, next) => {
 };
 
 SessionController.isLoggedIn = (req, res, next) => {
-  const { token } = res.cookie;
+  const { accessToken: token } = req.body;
   try {
     jwt.verify(token, TOKEN_SECRET, (err, decoded) => {
-      console.log("decoded->", decoded);
-      if (res.locals) console.log("hello");
+      console.log('decoded->', decoded);
+      res.locals.currentUser = decoded;
+      // if (res.locals) console.log('hello');
+      return next();
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log('Error in isLoggedIn');
+  }
 };
 
 module.exports = SessionController;

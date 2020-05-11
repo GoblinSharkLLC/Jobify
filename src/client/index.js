@@ -5,6 +5,7 @@ import App from './App';
 import styles from '../client/stylesheets/styles.scss';
 
 render(
+  // You wrap your app in BrowserRouter
   <BrowserRouter>
     <App />
   </BrowserRouter>,

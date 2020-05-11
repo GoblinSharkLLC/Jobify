@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Job from './Job';
 import axios from 'axios';
 
+// display for a user's saved jobs
 export default function JobContainer() {
   const [savedJobs, setSavedJobs] = useState([
     {
@@ -17,18 +18,21 @@ export default function JobContainer() {
       notes: 'Whats up',
     },
   ]);
-  const getSavedJob = async () => {
-    try {
-      const result = await axios.get('url for saved job', {
-        data: "user's id",
-      });
-      setSavedJobs(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.post('api/users/savedJobs', {
+          accessToken: localStorage.getItem('jwt'),
+        });
+        setSavedJobs(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
-    <div>
+    <div id="find-jobs-display">
       {savedJobs.map((savedJob, idx) => {
         return (
           <Job key={`savedJob${idx}`} job={savedJob} savedContainer={true} />

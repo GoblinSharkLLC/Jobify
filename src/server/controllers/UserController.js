@@ -5,17 +5,18 @@ const saltRounds = 10;
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
-  console.log('Entering createUser');
-  console.log('Request body in createUser -> ', req.body);
+  // console.log('Entering createUser');
+  // console.log('Request body in createUser -> ', req.body);
   const { username, password } = req.body;
 
+  // Check if username and password were provided, probably redundant since database also checks
   if (!username.length || !password.length) {
     return next({
       log: 'Error in createUser middleware',
       message: { err: 'Nothing was entered into username/password' },
     });
   }
-
+  // Create salt and hash password
   const salt = await bcrypt.genSalt(saltRounds);
   const hash = await bcrypt.hash(password, salt);
   // Store hash in your password DB.
@@ -41,9 +42,10 @@ userController.createUser = async (req, res, next) => {
 };
 
 userController.verifyUser = async (req, res, next) => {
-  console.log('Entering verifyUser');
+  // console.log('Entering verifyUser');
   const { username, password } = req.body;
 
+  // Check if username and password were provided
   if (!username.length || !password.length) {
     return next({
       log: 'Error in verifyUser middleware',
@@ -59,6 +61,8 @@ userController.verifyUser = async (req, res, next) => {
     // console.log('Data returned from database in verifyUser-> ', data);
     const hashedPw = data.rows[0].password;
     const userId = data.rows[0].id;
+    console.log('This is the userId after a user registers: ', userId);
+
     // Compare stored password to given password from request body (frontend login page)
     bcrypt.compare(password, hashedPw, (err, result) => {
       console.log('Result of bcrypt -> ', result);
@@ -66,7 +70,7 @@ userController.verifyUser = async (req, res, next) => {
         res.locals.user = { username, userId };
         return next();
       }
-      return res.redirect('/signup');
+      return res.status(400).send('Incorrect credentials');
     });
   });
 };

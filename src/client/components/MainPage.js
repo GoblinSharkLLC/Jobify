@@ -3,44 +3,31 @@ import axios from 'axios';
 import Job from './Job';
 import { Button } from 'react-bootstrap';
 
-const placeHolderJobs = [
-  {
-    id: 1,
-    title: 'Lead Front End Developer',
-    company: 'FaceBook',
-    image:
-      'https://imagoearth.org/wp-content/uploads/2019/12/facebook-logo.png',
-    url: 'https://www.facebook.com/hire',
-    city: 'New York',
-    state: 'NY',
-    status: 'Open',
-    posted: 'May 5, 2020',
-    description: 'Be an Engineer at facebook!',
-    contact: 'Mr.',
-    notes: 'Whats up',
-  },
-  {
-    id: 2,
-    title: 'Mid-Level Software Engineer at Oracle',
-    company: 'Oracle Inc.',
-    image: '',
-    url: 'Https://www.Oracle.com/this/is/a/cool/job',
-    city: 'Boston',
-    state: 'MA',
-    status: 'OPEN',
-    posted: 'May 1, 2020',
-    description:
-      'Come be an engineer at oracle and let Larry Ellison kick you in the nuts every 3 hours',
-    contact: 'Mr.',
-    notes: '',
-  },
-];
-
 export default function MainPage() {
   const [jobs, setJobs] = useState(placeHolderJobs);
   const [title, setTitle] = useState('');
   const [loc, setLoc] = useState('');
 
+  const saveJob = async (job) => {
+    try {
+      axios.post('/api/users/jobs', {
+        accessToken: localStorage.getItem('jwt'),
+        job,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteJob = async (job) => {
+    try {
+      axios.delete('/api/users/jobs', {
+        id: job.id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const handleSubmit = async () => {
     const saveInput = [title, loc];
     setTitle('');
@@ -90,9 +77,50 @@ export default function MainPage() {
       </div>
       <div id="find-jobs-display">
         {jobs.map((job, idx) => {
-          return <Job key={`job${idx}`} job={job} savedContainer={false} />;
+          return (
+            <Job
+              key={`job${idx}`}
+              job={job}
+              savedContainer={false}
+              saveJob={() => saveJob(job)}
+              deleteJob={() => deleteJob(job)}
+            />
+          );
         })}
       </div>
     </div>
   );
 }
+
+const placeHolderJobs = [
+  {
+    id: 1,
+    title: 'Lead Front End Developer',
+    company: 'FaceBook',
+    image:
+      'https://imagoearth.org/wp-content/uploads/2019/12/facebook-logo.png',
+    url: 'https://www.facebook.com/hire',
+    city: 'New York',
+    state: 'NY',
+    status: 'Open',
+    posted: 'May 5, 2020',
+    description: 'Be an Engineer at facebook!',
+    contact: 'Mr.',
+    notes: 'Whats up',
+  },
+  {
+    id: 2,
+    title: 'Mid-Level Software Engineer at Oracle',
+    company: 'Oracle Inc.',
+    image: '',
+    url: 'Https://www.Oracle.com/this/is/a/cool/job',
+    city: 'Boston',
+    state: 'MA',
+    status: 'OPEN',
+    posted: 'May 1, 2020',
+    description:
+      'Come be an engineer at oracle and let Larry Ellison kick you in the nuts every 3 hours',
+    contact: 'Mr.',
+    notes: '',
+  },
+];

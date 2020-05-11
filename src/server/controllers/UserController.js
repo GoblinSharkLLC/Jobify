@@ -22,7 +22,9 @@ userController.createUser = (req, res, next) => {
       const text = 'INSERT INTO users(username, password) VALUES ($1, $2)';
       const values = [username.toLowerCase(), hash];
       db.query(text, values)
-        .then(() => {
+        .then((result) => {
+          res.locals.user = { username };
+          console.log(res.locals.user);
           return next();
         })
         .catch(() =>

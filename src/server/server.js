@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const jobRouter = require('./routers/jobRouter');
 const userRouter = require('./routers/userRouter');
-const contactRouter = require('./routers/contactRouter');
+// const contactRouter = require('./routers/contactRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

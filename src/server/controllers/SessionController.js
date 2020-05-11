@@ -8,9 +8,10 @@ SessionController.signToken = (req, res, next) => {
   console.log('Entering signToken');
   try {
     const { username } = res.locals.user;
-    res.locals.token = jwt.sign({ username }, TOKEN_SECRET, {
+    const accessToken = jwt.sign({ username }, TOKEN_SECRET, {
       expiresIn: '1800s',
     });
+    res.locals.token = { accessToken: accessToken };
     console.log('Created token for ', username, ': ', res.locals.token);
     return next();
   } catch (err) {

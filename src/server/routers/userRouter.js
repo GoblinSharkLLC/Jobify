@@ -12,9 +12,10 @@ router.post(
   // UserController.checkDuplicates,
   UserController.createUser,
   SessionController.signToken,
-  CookieController.setSessionCookie,
+  // CookieController.setSessionCookie,
   (req, res) => {
-    res.send('Created user');
+    console.log('Registered User');
+    res.status(200).json(res.locals.token);
   }
 );
 
@@ -27,7 +28,7 @@ router.post(
   // SessionController.isLoggedIn,
   (req, res) => {
     // console.log('Back in user/post to /login');
-    return res.status(200).send('Sending from /login');
+    return res.status(200).json(res.locals.token);
   }
 );
 

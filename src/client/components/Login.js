@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Form, Button, Fade } from "react-bootstrap";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Form, Button, Fade } from 'react-bootstrap';
+import axios from 'axios';
 
 export default function Login({ setUserId, setUserName }) {
   //console.log(typeof setUserName, typeof setUserId);
-  const [username, setName] = useState("");
-  const [password, setPass] = useState("");
+  const [username, setName] = useState('');
+  const [password, setPass] = useState('');
   const handleChange = (event) => {
     event.preventDefault();
     event.persist();
     console.log(username, password);
-    if (event.target.name === "username") {
+    if (event.target.name === 'username') {
       setName(event.target.value);
     } else {
       setPass(event.target.value);
@@ -18,11 +18,11 @@ export default function Login({ setUserId, setUserName }) {
   };
   const handleSubmit = async (event) => {
     let saveInput = [username, password];
-    setName("");
-    setPass("");
+    setName('');
+    setPass('');
     console.log(saveInput);
     try {
-      await axios.post("/api/users/login", {
+      await axios.post('/api/users/login', {
         username: saveInput[0],
         password: saveInput[1],
       });

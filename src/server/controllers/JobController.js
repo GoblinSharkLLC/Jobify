@@ -4,9 +4,8 @@ const db = require('../database.js');
 const jobController = {};
 
 jobController.searchJobs = (req, res, next) => {
-  // const { location, title as description } = req.query;
-  const location = 'New York';
-  const description = 'Python';
+  const { location, title: description } = req.query;
+  console.log('Entering searchJobs');
 
   axios
     .get('https://jobs.github.com/positions.json?', {
@@ -25,7 +24,7 @@ jobController.searchJobs = (req, res, next) => {
         message: { err: `Error fetching api: ${err}` },
       });
     });
-  // https://jobs.github.com/positions.json?description=python&location=new+york
+  // https://jobs.github.com/positions.json?description=python&location=new+york // example full URL
 };
 
 jobController.saveJob = (req, res, next) => {

@@ -41,7 +41,7 @@ export default function MainPage() {
   const [title, setTitle] = useState('');
   const [loc, setLoc] = useState('');
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     const saveInput = [title, loc];
     setTitle('');
     setLoc('');
@@ -52,7 +52,7 @@ export default function MainPage() {
         location: saveInput[1],
       },
     });
-    setJobs(result);
+    setJobs(result.data);
     // get data from form
     // axios request to server with data
     // save returnValues to state

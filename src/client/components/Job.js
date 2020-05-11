@@ -23,7 +23,7 @@ export default function Job({ job, savedContainer }) {
       // if the user wants to delete Job
       // DELETE to /api/savedJobs
       try {
-        await axios.delete('/api/savedJobs', {
+        await axios.delete('/api/users/jobs', {
           data: { title, company, url },
         });
         setSaved(false);
@@ -34,7 +34,7 @@ export default function Job({ job, savedContainer }) {
       // if the user wants to save Job
       // POST to /api/savedJobs
       try {
-        axios.post('/api/savedJobs', {
+        axios.post('/api/users/jobs', {
           data: job,
         });
         setSaved(true);
@@ -52,7 +52,7 @@ export default function Job({ job, savedContainer }) {
     <div className="job-container">
       <p className="job-header">{title}</p>
       <p className="text-muted">At: {company}</p>
-      <img src={image} alt="company logo" className="logo-image" />
+      {/* <img src={image} alt="company logo" className="logo-image" /> */}
       <p>
         {city}, {state}
       </p>

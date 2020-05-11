@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
-import { Form, Button, Fade } from 'react-bootstrap';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Form, Button, Fade } from "react-bootstrap";
+import axios from "axios";
 
-export default function Login({ setUserId, setUserName }) {
-  //console.log(typeof setUserName, typeof setUserId);
-  const [username, setName] = useState('');
-  const [password, setPass] = useState('');
+export default function Login({ setUserId, setUserName, status }) {
+  const [username, setName] = useState("");
+  const [password, setPass] = useState("");
+  const history = useHistory();
+  console.log(status);
+
   const handleChange = (event) => {
     event.preventDefault();
     event.persist();
-    console.log(username, password);
-    if (event.target.name === 'username') {
+    if (event.target.name === "username") {
       setName(event.target.value);
     } else {
       setPass(event.target.value);
     }
   };
-  const handleSubmit = async (event) => {
-    let saveInput = [username, password];
-    setName('');
-    setPass('');
-    console.log(saveInput);
-    try {
-      await axios.post('/api/users/login', {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const saveInput = [username, password];
+    setName("");
+    setPass("");
+    axios
+      .post(`/api/users/${status}`, {
         username: saveInput[0],
         password: saveInput[1],
+      })
+      .then((response) => {
+        // console.log("Response data", response.data);
+        window.localStorage.setItem(
+          "jwt",
+          JSON.stringify(response.data.accessToken)
+        );
+        // redirect to find/saved jobs
+        setUserName(saveInput[0]);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log("Error", err);
+        // redirect to signup
       });
-      saveInput = [];
-    } catch (err) {
-      console.log(err);
-    }
   };
   return (
     <div className="login">

@@ -50,11 +50,11 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
       </ul>
       <a href={url}>{formatUrl(url)}</a>
       <aside>{posted}</aside>
-      {savedContainer ? (
+      {/* {savedContainer ? (
         <div>
           <Contact contact={contact} />
         </div>
-      ) : null}
+      ) : null} */}
       {savedContainer ? <textarea defaultValue={notes} /> : null}
 
       {/* Logic to determine whether to display the save  r delee button*/}

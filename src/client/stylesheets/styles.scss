@@ -1,10 +1,16 @@
-$primaryColor: #212529;
+$primaryColor: #1c41b8;
 $secondaryColor: lighten($primaryColor, 10%);
 $tertiaryColor: lighten($secondaryColor, 10%);
 
 body {
+  margin: 0;
   font-family: 'Times New Roman', Times, serif;
-  background-color: #dfdfdf;
+  background-color: #c7c7c7;
+}
+
+h2 {
+  font-size: 2rem;
+  color: white;
 }
 
 .job-container {
@@ -24,9 +30,13 @@ body {
 }
 
 .login-form {
-  max-width: 30vw;
+  background: gray;
+  flex-direction: column;
+  max-width: 25vw;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .logo-image {
@@ -38,17 +48,27 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px 10px 30px;
+  margin-bottom: 30px;
   color: white;
-  background: dodgerblue;
+  background-image: linear-gradient(to right, rgb(174, 214, 255), dodgerblue);
   box-shadow: 0px 5px 2px #6c757d;
 }
 
 .nav-button {
   background: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 5px 5px;
   border: 1px solid #6c757d;
   border-radius: 5px;
   color: dodgerblue;
   margin: 5px;
+  transition-property: background-color, color;
+  transition-duration: 400ms;
+  &:hover {
+    background: #6c757d;
+    color: white;
+  }
 }
 
 #search-container {

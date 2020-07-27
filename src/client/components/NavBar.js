@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import { Navbar, NavItem, Nav, Col, Button } from 'react-bootstrap';
 
-export default function NavPanel({ login, setLogin }) {
+export default function NavBar({ login, setLogin }) {
   const [userName, setUserName] = useState('');
 
   const parseJwt = (token) => {
@@ -22,7 +21,9 @@ export default function NavPanel({ login, setLogin }) {
   return (
     <div className="nav-bar">
       <div>
-        <h1>Jobify</h1>
+        <Link to="/">
+          <img src="src/assets/onlinelogomaker-072720-1517-6771.png"></img>
+        </Link>
       </div>
       <div>
         <Link to="/login">

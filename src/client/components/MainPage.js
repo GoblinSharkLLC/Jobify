@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Job from './Job';
-import { Button } from 'react-bootstrap';
 
 export default function MainPage() {
   const [jobs, setJobs] = useState(placeHolderJobs);
@@ -72,7 +71,7 @@ export default function MainPage() {
             value={loc}
             onInput={handleChange}
           />
-          <Button onClick={handleSubmit}>Search</Button>
+          <button onClick={handleSubmit}>Search</button>
         </form>
       </div>
       <div id="find-jobs-display">

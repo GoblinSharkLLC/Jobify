@@ -27,7 +27,8 @@ export default function Login({ setLogin, status }) {
   };
 
   return (
-    <div>
+    <div className="login-form">
+      <h2>{status}</h2>
       <input
         name="username"
         id="username"
@@ -35,7 +36,6 @@ export default function Login({ setLogin, status }) {
         placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
       ></input>
-
       <input
         name="password"
         id="password"
@@ -43,7 +43,6 @@ export default function Login({ setLogin, status }) {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       ></input>
-
       <button onClick={(e) => handleSubmit(e)}>Submit</button>
     </div>
 

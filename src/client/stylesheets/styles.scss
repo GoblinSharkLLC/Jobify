@@ -28,6 +28,7 @@ input {
 
 .login-form {
   background: $primaryColor;
+  margin: 30px auto;
   flex-direction: column;
   max-width: 25vw;
   display: flex;
@@ -44,7 +45,6 @@ input {
 
 .nav-bar {
   display: flex;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
   padding: 15px 60px 10px 30px;
@@ -99,6 +99,12 @@ input {
 }
 
 #main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#jobs-container {
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;

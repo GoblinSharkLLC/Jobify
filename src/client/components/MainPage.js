@@ -53,7 +53,7 @@ export default function MainPage() {
   };
 
   return (
-    <div>
+    <div id="jobs-container">
       <div id="search-container">
         <form id="job-search">
           <input
@@ -61,14 +61,14 @@ export default function MainPage() {
             name="query1"
             placeholder="Job Title..."
             value={title}
-            onInput={handleChange}
+            onChange={handleChange}
           />
           <input
             type="text"
             name="query2"
             placeholder="Location..."
             value={loc}
-            onInput={handleChange}
+            onChange={handleChange}
           />
           <button className="nav-button" onClick={handleSubmit}>
             Search

@@ -1,23 +1,23 @@
 {
-  "name": "job-board-project",
+  "name": "jobify",
   "version": "1.0.0",
-  "description": "Job board",
+  "description": "Jobify, a job posting and job search aggregator",
   "main": "index.js",
   "scripts": {
     "start": "set \"NODE_ENV=production\" && nodemon src/server/server.js",
     "build": "set \"NODE_ENV=production\" && \"webpack\"",
-    "dev": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon src/server/server.js\""
+    "dev": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daves28/job-board-project.git"
+    "url": "git+https://github.com/GoblinSharkLLC/Jobify.git"
   },
   "author": "Goblin Shark",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/daves28/job-board-project/issues"
+    "url": "https://github.com/GoblinSharkLLC/Jobify/issues"
   },
-  "homepage": "https://github.com/daves28/job-board-project#readme",
+  "homepage": "https://github.com/GoblinSharkLLC/Jobify#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
@@ -32,7 +32,6 @@
     "path": "^0.12.7",
     "pg": "^8.1.0",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",

@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Button, Fade } from 'react-bootstrap';
 import axios from 'axios';
 
 export default function Login({ setLogin, status }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    let form = event.target;
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios
       .post(`/api/users/${status}`, {
-        username: form.elements.username.value,
-        password: form.elements.password.value,
+        username: username,
+        password: password,
       })
       .then((response) => {
-        // console.log("Response data", response.data);
         window.localStorage.setItem('jwt', response.data.accessToken);
         // redirect to find/saved jobs
         setLogin(true);
@@ -26,28 +25,49 @@ export default function Login({ setLogin, status }) {
         // redirect to signup
       });
   };
+
   return (
-    <div className="login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control name="username" placeholder="Enter username" />
-        </Form.Group>
+    <div>
+      <input
+        name="username"
+        id="username"
+        value={username}
+        placeholder="Username"
+        onChange={(e) => setUsername(e.target.value)}
+      ></input>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </Form.Group>
+      <input
+        name="password"
+        id="password"
+        value={password}
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      ></input>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <button onClick={(e) => handleSubmit(e)}>Submit</button>
     </div>
+
+    // return (
+    //   <div className="login-form">
+    //     <Form onSubmit={handleSubmit}>
+    //       <Form.Group controlId="formBasicEmail">
+    //         <Form.Label>Username</Form.Label>
+    //         <Form.Control name="username" placeholder="Enter username" />
+    //       </Form.Group>
+
+    //       <Form.Group controlId="formBasicPassword">
+    //         <Form.Label>Password</Form.Label>
+    //         <Form.Control
+    //           type="password"
+    //           name="password"
+    //           placeholder="Password"
+    //         />
+    //       </Form.Group>
+
+    //       <Button variant="primary" type="submit">
+    //         Submit
+    //       </Button>
+    //     </Form>
+    //   </div>
   );
 }
-o;

@@ -15,12 +15,12 @@ app.use('/api/search', jobRouter, (req, res) => {
   console.log('Back in /search server.js');
 });
 
-// app.use('/api/savedJobs', jobRouter, (req, res) => {
-//   return res.status(200).json();
-// });
+app.use('/api/savedJobs', jobRouter, (req, res) => {
+  return res.status(200).json();
+});
+
 app.use('/api/users', userRouter, (req, res) => {
   console.log('Back in server.js');
-  // return res.status(200).send('Returning from /api/users in server.js');
 });
 
 app.use('/', (req, res) => {

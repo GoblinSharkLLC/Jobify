@@ -7,10 +7,6 @@ body {
   background-color: #dfdfdf;
 }
 
-#find-jobs-display {
-  display: flex;
-  flex-wrap: wrap;
-}
 .job-container {
   border-radius: 10px;
   background-color: #fff;
@@ -27,13 +23,32 @@ body {
   color: $secondaryColor;
 }
 
-.text-muted {
-  color: darken(#6c757d, 50%) !important;
-}
-.login {
+.login-form {
   max-width: 30vw;
   display: flex;
   justify-content: center;
+}
+
+.logo-image {
+  max-height: 100px;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px 10px 30px;
+  color: white;
+  background: dodgerblue;
+  box-shadow: 0px 5px 2px #6c757d;
+}
+
+.nav-button {
+  background: white;
+  border: 1px solid #6c757d;
+  border-radius: 5px;
+  color: dodgerblue;
+  margin: 5px;
 }
 
 #search-container {
@@ -49,6 +64,7 @@ body {
   outline: none;
 }
 
-.logo-image {
-  max-height: 100px;
+#find-jobs-display {
+  display: flex;
+  flex-wrap: wrap;
 }

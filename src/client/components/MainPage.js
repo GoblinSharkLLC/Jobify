@@ -118,8 +118,7 @@ const placeHolderJobs = [
     state: 'MA',
     status: 'OPEN',
     posted: 'May 1, 2020',
-    description:
-      'Come be an engineer at oracle and let Larry Ellison kick you in the nuts every 3 hours',
+    description: 'Be the oracle',
     contact: 'Mr.',
     notes: '',
   },

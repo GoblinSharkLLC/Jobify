@@ -57,7 +57,7 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
       ) : null} */}
       {savedContainer ? <textarea defaultValue={notes} /> : null}
 
-      {/* Logic to determine whether to display the save  r delee button*/}
+      {/* Logic to determine whether to display the save or delete button*/}
       {localStorage.getItem('jwt') && !savedContainer ? (
         <input
           type="button"

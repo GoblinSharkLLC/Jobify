@@ -28,7 +28,7 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
 
   return (
     <div className="job-container">
-      <p className="job-header">{title}</p>
+      <div className="job-header">{title}</div>
       <p className="text-muted">At: {company}</p>
       <p>
         {city}, {state}

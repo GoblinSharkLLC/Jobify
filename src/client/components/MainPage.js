@@ -31,7 +31,6 @@ export default function MainPage() {
     const saveInput = [title, loc];
     setTitle('');
     setLoc('');
-    console.log(saveInput);
     const result = await axios.get('/api/search', {
       params: {
         description: saveInput[0],
@@ -71,7 +70,9 @@ export default function MainPage() {
             value={loc}
             onInput={handleChange}
           />
-          <button onClick={handleSubmit}>Search</button>
+          <button className="nav-button" onClick={handleSubmit}>
+            Search
+          </button>
         </form>
       </div>
       <div id="find-jobs-display">

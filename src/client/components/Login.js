@@ -43,30 +43,9 @@ export default function Login({ setLogin, status }) {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       ></input>
-      <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      <button className="nav-button" onClick={(e) => handleSubmit(e)}>
+        Submit
+      </button>
     </div>
-
-    // return (
-    //   <div className="login-form">
-    //     <Form onSubmit={handleSubmit}>
-    //       <Form.Group controlId="formBasicEmail">
-    //         <Form.Label>Username</Form.Label>
-    //         <Form.Control name="username" placeholder="Enter username" />
-    //       </Form.Group>
-
-    //       <Form.Group controlId="formBasicPassword">
-    //         <Form.Label>Password</Form.Label>
-    //         <Form.Control
-    //           type="password"
-    //           name="password"
-    //           placeholder="Password"
-    //         />
-    //       </Form.Group>
-
-    //       <Button variant="primary" type="submit">
-    //         Submit
-    //       </Button>
-    //     </Form>
-    //   </div>
   );
 }

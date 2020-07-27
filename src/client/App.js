@@ -8,7 +8,7 @@ import Login from './components/Login';
 export default function App() {
   const [login, setLogin] = useState(false);
   return (
-    <div>
+    <div id="main-container">
       <NavBar login={login} setLogin={setLogin} />
       <Switch>
         <Route exact path="/" component={MainPage} />

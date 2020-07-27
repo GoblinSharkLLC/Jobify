@@ -1,11 +1,10 @@
-$primaryColor: #1c41b8;
-$secondaryColor: lighten($primaryColor, 10%);
-$tertiaryColor: lighten($secondaryColor, 10%);
+$primaryColor: #1e90ff;
+$secondaryColor: lighten($primaryColor, 35%);
 
 body {
   margin: 0;
   font-family: 'Times New Roman', Times, serif;
-  background-color: #c7c7c7;
+  background-color: $secondaryColor;
 }
 
 h2 {
@@ -13,16 +12,14 @@ h2 {
   color: white;
 }
 
-.job-container {
-  border-radius: 10px;
-  background-color: #fff;
-  margin: 0px 30px 0px 30px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 5px 5px 10px;
-  width: 20vw;
-  min-width: 280px;
+input {
+  font-size: 1.2rem;
+  border-style: none;
+  border-radius: 5px;
+  background: $secondaryColor;
+  padding: 5px;
+  margin: 5px;
+  outline: none;
 }
 
 .company {
@@ -30,13 +27,15 @@ h2 {
 }
 
 .login-form {
-  background: gray;
+  background: $primaryColor;
   flex-direction: column;
   max-width: 25vw;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px gray;
 }
 
 .logo-image {
@@ -45,17 +44,22 @@ h2 {
 
 .nav-bar {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px 10px 30px;
+  padding: 15px 60px 10px 30px;
   margin-bottom: 30px;
   color: white;
-  background-image: linear-gradient(to right, rgb(174, 214, 255), dodgerblue);
-  box-shadow: 0px 5px 2px #6c757d;
+  background-image: linear-gradient(
+    to right,
+    lighten($primaryColor, 20%),
+    $primaryColor
+  );
+  box-shadow: 0 3px 2px gray;
 }
 
 .nav-button {
-  background: white;
+  background: $secondaryColor;
   font-size: 1.2rem;
   font-weight: 700;
   padding: 5px 5px;
@@ -66,15 +70,44 @@ h2 {
   transition-property: background-color, color;
   transition-duration: 400ms;
   &:hover {
+    outline: none;
     background: #6c757d;
     color: white;
   }
 }
 
+.job-container {
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0px 30px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 5px gray;
+  width: 20vw;
+  min-width: 280px;
+}
+
+.job-header {
+  background: $primaryColor;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 5px 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #search-container {
   display: flex;
   justify-content: center;
-  padding: 50px 50px;
+  padding: 20px 0 40px 0;
 }
 
 #job-search {

@@ -1,18 +1,18 @@
-const path = require("path");
+const path = require('path');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require("webpack");
+const webpack = require('webpack');
 
 module.exports = {
-  entry: ["babel-polyfill", "./src/client/index.js"],
+  entry: ['babel-polyfill', './src/client/index.js'],
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
-    publicPath: "/build/",
+    publicPath: '/build/',
     proxy: {
-      "/api/**": "http://localhost:3000/",
+      '/api/**': 'http://localhost:3000/',
     },
     port: 8080,
     hot: true,
@@ -25,13 +25,13 @@ module.exports = {
         test: /\.jsx?/,
         exclude: /node-modules/,
         use: {
-          loader: "babel-loader",
-          options: { presets: ["@babel/preset-env", "@babel/preset-react"] },
+          loader: 'babel-loader',
+          options: { presets: ['@babel/preset-env', '@babel/preset-react'] },
         },
       },
       {
         test: /\.s?css$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },

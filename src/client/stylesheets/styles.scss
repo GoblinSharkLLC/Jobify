@@ -3,13 +3,14 @@ $secondaryColor: lighten($primaryColor, 10%);
 $tertiaryColor: lighten($secondaryColor, 10%);
 
 body {
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   background-color: #dfdfdf;
 }
+
 #find-jobs-display {
   display: flex;
+  flex-wrap: wrap;
 }
-
 .job-container {
   border-radius: 10px;
   background-color: #fff;
@@ -20,12 +21,6 @@ body {
   box-shadow: 5px 5px 10px;
   width: 20vw;
   min-width: 280px;
-}
-
-.job-header {
-  color: $primaryColor;
-  font-weight: 500;
-  margin-bottom: 0.1em;
 }
 
 .company {

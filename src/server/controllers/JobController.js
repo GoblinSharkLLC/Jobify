@@ -5,8 +5,8 @@ const jobController = {};
 
 jobController.searchJobs = (req, res, next) => {
   // Destructure the search query sent from the frontend
+  console.log('Entering searchJobs, req.query: ', req.query);
   const { location, title: description } = req.query;
-  // console.log('Entering searchJobs');
 
   // Send search request to the github API with the destructured search parameters.
   axios

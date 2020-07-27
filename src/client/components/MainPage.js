@@ -27,10 +27,13 @@ export default function MainPage() {
       console.log(err);
     }
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    e.persist();
     const saveInput = [title, loc];
     setTitle('');
     setLoc('');
+    console.log(saveInput);
     const result = await axios.get('/api/search', {
       params: {
         description: saveInput[0],
@@ -42,18 +45,12 @@ export default function MainPage() {
     // axios request to server with data
     // save returnValues to state
   };
-  const handleChange = (event) => {
-    event.preventDefault();
-    event.persist();
-    if (event.target.name === 'query1') {
-      setTitle(event.target.value);
-    } else {
-      setLoc(event.target.value);
-    }
-  };
 
   return (
     <div id="jobs-container">
+      <h1>
+        Job: {title} & Loc: {loc}
+      </h1>
       <div id="search-container">
         <form id="job-search">
           <input
@@ -61,14 +58,14 @@ export default function MainPage() {
             name="query1"
             placeholder="Job Title..."
             value={title}
-            onChange={handleChange}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <input
             type="text"
             name="query2"
             placeholder="Location..."
             value={loc}
-            onChange={handleChange}
+            onChange={(e) => setLoc(e.target.value)}
           />
           <button className="nav-button" onClick={handleSubmit}>
             Search

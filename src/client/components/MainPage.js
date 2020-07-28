@@ -110,7 +110,7 @@ const placeHolderJobs = [
     title: 'Mid-Level Software Engineer at Oracle',
     company: 'Oracle Inc.',
     image: '',
-    url: 'Https://www.Oracle.com/this/is/a/cool/job',
+    url: 'Https://www.oracle.com/this/is/a/cool/job',
     city: 'Boston',
     state: 'MA',
     status: 'OPEN',

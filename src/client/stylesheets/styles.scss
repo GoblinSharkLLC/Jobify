@@ -79,18 +79,29 @@ input {
 .job-container {
   border-radius: 10px;
   background-color: #fff;
-  margin: 0px 30px 0px 30px;
+  margin: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   box-shadow: 2px 2px 5px gray;
   width: 20vw;
   min-width: 280px;
+}
+
+.job-content {
+  padding: 5px 10px;
+  & ul {
+    list-style: none;
+    padding: 0px;
+    font-style: italic;
+  }
 }
 
 .job-header {
   background: $primaryColor;
   text-align: center;
   color: white;
+  width: 100%;
   font-size: 1.2rem;
   font-weight: 700;
   padding: 5px 0;
@@ -105,6 +116,7 @@ input {
 
 #jobs-container {
   width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

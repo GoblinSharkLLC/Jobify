@@ -17,7 +17,6 @@ jobController.searchJobs = (req, res, next) => {
       },
     })
     .then((result) => {
-      // console.log(result.data);
       return res.status(200).json(result.data);
     })
     .catch((err) => {

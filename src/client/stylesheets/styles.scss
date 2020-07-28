@@ -7,9 +7,17 @@ body {
   background-color: $secondaryColor;
 }
 
+p {
+  margin: 2px 0;
+}
+
 h2 {
   font-size: 2rem;
   color: white;
+}
+
+h3 {
+  margin: 5px 0;
 }
 
 input {
@@ -79,13 +87,13 @@ input {
 .job-container {
   border-radius: 10px;
   background-color: #fff;
-  margin: auto;
+  opacity: 0.8;
+  margin: 10px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 2px 2px 5px gray;
-  width: 20vw;
-  min-width: 280px;
+  width: 450px;
 }
 
 .job-content {
@@ -105,6 +113,7 @@ input {
   font-size: 1.2rem;
   font-weight: 700;
   padding: 5px 0;
+  margin-bottom: 15px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -139,4 +148,22 @@ input {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+#location {
+  font-style: italic;
+}
+
+#company-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+#company-logo {
+  display: flex;
+  align-self: center;
+  & img {
+    max-height: 100px;
+    max-width: 125px;
+  }
 }

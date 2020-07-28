@@ -7,13 +7,12 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
   const {
     id,
     title,
-    city,
+    location,
     company,
-    image,
+    company_logo,
     url,
-    state,
     status,
-    posted,
+    created_at,
     description,
     contact,
     notes,
@@ -26,14 +25,25 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
     return noHttp.substr(0, noHttp.indexOf('/'));
   };
 
+  const formatDate = (inputDate) => {
+    // TODO: format input date for the job card
+    return inputDate;
+  };
+
   return (
     <div className="job-container">
       <div className="job-header">{title}</div>
       <div className="job-content">
-        <h3>{company}</h3>
-        <p>
-          {city}, {state}
-        </p>
+        <div id="company-info">
+          <div>
+            <h3>{company}</h3>
+            <p id="location">{location}</p>
+            <p>Posted: {formatDate(created_at)}</p>
+          </div>
+          <div id="company-logo">
+            <img src={company_logo}></img>
+          </div>
+        </div>
         {savedContainer === true ? (
           <form>
             <label htmlFor="status">Status: </label>
@@ -49,8 +59,7 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
         <ul>
           <li>{description.slice(0, 200) + '...'}</li>
         </ul>
-        <a href={url}>{formatUrl(url)}</a>
-        <aside>{posted}</aside>
+        <a href={url}>Find out more</a>
       </div>
       {/* {savedContainer ? (
         <div>

@@ -31,6 +31,7 @@ export default function MainPage() {
       console.log(err);
     }
   };
+
   const handleSubmit = async (e) => {
     if (e) {
       e.preventDefault();

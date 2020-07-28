@@ -24,7 +24,6 @@ export default function JobContainer() {
         const result = await axios.post('api/users/savedJobs', {
           accessToken: localStorage.getItem('jwt'),
         });
-        console.log(result.data);
         setSavedJobs(result.data);
       } catch (error) {
         console.log(error);

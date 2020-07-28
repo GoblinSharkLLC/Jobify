@@ -89,7 +89,7 @@ jobController.getUserJobs = (req, res, next) => {
   const values = [userId];
   db.query(text, values)
     .then((data) => {
-      console.log('This is the data in getUserJobs: ', data);
+      // console.log('This is the data in getUserJobs: ', data);
       return res.status(200).json(data.rows);
     })
     .catch((err) => {

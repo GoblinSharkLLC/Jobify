@@ -106,6 +106,8 @@ input {
 }
 
 .job-header {
+  display: flex;
+  justify-content: space-between;
   background: $primaryColor;
   text-align: center;
   color: white;
@@ -144,6 +146,10 @@ input {
   outline: none;
 }
 
+#job-title {
+  margin-left: 10px;
+}
+
 #find-jobs-display {
   display: flex;
   align-items: flex-start;
@@ -166,4 +172,10 @@ input {
     max-height: 100px;
     max-width: 125px;
   }
+}
+
+#save-job {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }

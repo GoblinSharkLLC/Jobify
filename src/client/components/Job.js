@@ -20,11 +20,6 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
   // state hook to denote whether a job has been saved or not
   const [saved, setSaved] = useState(false);
 
-  const formatUrl = (url) => {
-    const noHttp = url.substr(url.indexOf('www.'));
-    return noHttp.substr(0, noHttp.indexOf('/'));
-  };
-
   const formatDate = (inputDate) => {
     // TODO: format input date for the job card
     return inputDate;
@@ -32,7 +27,10 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
 
   return (
     <div className="job-container">
-      <div className="job-header">{title}</div>
+      <div className="job-header">
+        <div id="job-title">{title}</div>
+        <img id="save-job" src="src/assets/64x64.png"></img>
+      </div>
       <div className="job-content">
         <div id="company-info">
           <div>
@@ -47,7 +45,7 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
         {savedContainer === true ? (
           <form>
             <label htmlFor="status">Status: </label>
-            <select id="status" name="statusName">
+            <select className="status" name="statusName">
               <option value="Need to Apply">Need to Apply</option>
               <option value="Applied">Applied</option>
               <option value="Interview Scheduled">Interview Scheduled</option>
@@ -70,23 +68,25 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
 
       {/* Logic to determine whether to display the save or delete button*/}
       {localStorage.getItem('jwt') && !savedContainer ? (
-        <input
-          type="button"
-          value="Save Job"
+        <button
+          className="nav-button"
           onClick={() => {
             saveJob();
             setSaved(true);
           }}
-        />
+        >
+          Save Job
+        </button>
       ) : localStorage.getItem('jwt') && savedContainer ? (
-        <input
-          type="button"
-          value="Delete Job"
+        <button
+          className="nav-button"
           onClick={() => {
             deleteJob();
             setSaved(false);
           }}
-        />
+        >
+          Delete Job
+        </button>
       ) : null}
     </div>
   );

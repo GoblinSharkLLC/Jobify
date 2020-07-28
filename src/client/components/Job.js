@@ -28,28 +28,30 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
 
   return (
     <div className="job-container">
-      <p className="job-header">{title}</p>
-      <p className="text-muted">At: {company}</p>
-      <p>
-        {city}, {state}
-      </p>
-      {savedContainer === true ? (
-        <form>
-          <label htmlFor="status">Status: </label>
-          <select id="status" name="statusName">
-            <option value="Need to Apply">Need to Apply</option>
-            <option value="Applied">Applied</option>
-            <option value="Interview Scheduled">Interview Scheduled</option>
-            <option value="Offer">Offer</option>
-            <option value="Rejected">Rejected</option>
-          </select>
-        </form>
-      ) : null}
-      <ul>
-        <li>{description.slice(0, 100) + '...'}</li>
-      </ul>
-      <a href={url}>{formatUrl(url)}</a>
-      <aside>{posted}</aside>
+      <div className="job-header">{title}</div>
+      <div className="job-content">
+        <h3>{company}</h3>
+        <p>
+          {city}, {state}
+        </p>
+        {savedContainer === true ? (
+          <form>
+            <label htmlFor="status">Status: </label>
+            <select id="status" name="statusName">
+              <option value="Need to Apply">Need to Apply</option>
+              <option value="Applied">Applied</option>
+              <option value="Interview Scheduled">Interview Scheduled</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </form>
+        ) : null}
+        <ul>
+          <li>{description.slice(0, 200) + '...'}</li>
+        </ul>
+        <a href={url}>{formatUrl(url)}</a>
+        <aside>{posted}</aside>
+      </div>
       {/* {savedContainer ? (
         <div>
           <Contact contact={contact} />
@@ -57,7 +59,7 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
       ) : null} */}
       {savedContainer ? <textarea defaultValue={notes} /> : null}
 
-      {/* Logic to determine whether to display the save  r delee button*/}
+      {/* Logic to determine whether to display the save or delete button*/}
       {localStorage.getItem('jwt') && !savedContainer ? (
         <input
           type="button"

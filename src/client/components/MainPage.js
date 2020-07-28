@@ -23,18 +23,6 @@ export default function MainPage() {
     }
   };
 
-  const deleteJob = () => {
-    console.log('deleteJob is running');
-    // try {
-    //   console.log(job.id);
-    //   axios.delete('/api/users/jobs', {
-    //     id: job.id,
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
-
   const handleSubmit = async (e) => {
     if (e) {
       e.preventDefault();
@@ -94,7 +82,7 @@ export default function MainPage() {
               job={job}
               savedContainer={false}
               saveJob={() => saveJob(job)}
-              deleteJob={() => deleteJob(job)}
+              deleteJob={() => deleteJob()}
             />
           );
         })}

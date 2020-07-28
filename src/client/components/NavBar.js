@@ -22,7 +22,7 @@ export default function NavBar({ login, setLogin }) {
     <div className="nav-bar">
       <div>
         <Link to="/">
-          <img src="src/assets/onlinelogomaker-072720-1517-6771.png"></img>
+          <img src="src/assets/jobify-logo.png"></img>
         </Link>
       </div>
       <div>

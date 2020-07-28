@@ -43,12 +43,6 @@ SessionController.isLoggedIn = (req, res, next) => {
     res.locals.currentUser = decoded;
     return next();
   });
-  // } catch (err) {
-  //   console.log('Error in isLoggedIn');
-  //   return next({
-  //     log: 'Error checking session validity in isLoggedin',
-  //     message: { error: `Error in isLogged in: ${err}` },
-  //   });
 };
 
 module.exports = SessionController;

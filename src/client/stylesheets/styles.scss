@@ -151,6 +151,8 @@ input {
 }
 
 #find-jobs-display {
+  width: 90%;
+  margin: auto;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -174,8 +176,23 @@ input {
   }
 }
 
-#save-job {
+#save-job,
+#delete-job {
   width: 25px;
   height: 25px;
   margin-right: 10px;
+  transition-duration: 200ms;
+  &:active {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.comment-box {
+  background: $secondaryColor;
+  padding: 3px;
+}
+
+.hide {
+  display: none;
 }

@@ -26,10 +26,28 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
   };
 
   return (
-    <div className="job-container">
+    <div id={`job-container-${id}`} className="job-container">
       <div className="job-header">
         <div id="job-title">{title}</div>
-        <img id="save-job" src="src/assets/64x64.png"></img>
+        {localStorage.getItem('jwt') && !savedContainer ? (
+          <img
+            id="save-job"
+            src="src/assets/plus64.png"
+            onClick={() => {
+              saveJob();
+              setSaved(true);
+            }}
+          ></img>
+        ) : localStorage.getItem('jwt') && savedContainer ? (
+          <img
+            id="delete-job"
+            src="src/assets/minus64.png"
+            onClick={() => {
+              deleteJob(id);
+              setSaved(false);
+            }}
+          ></img>
+        ) : null}
       </div>
       <div className="job-content">
         <div id="company-info">
@@ -57,37 +75,23 @@ export default function Job({ job, savedContainer, saveJob, deleteJob }) {
         <ul>
           <li>{description.slice(0, 200) + '...'}</li>
         </ul>
-        <a href={url}>Find out more</a>
       </div>
       {/* {savedContainer ? (
         <div>
-          <Contact contact={contact} />
+        <Contact contact={contact} />
         </div>
       ) : null} */}
-      {savedContainer ? <textarea defaultValue={notes} /> : null}
-
-      {/* Logic to determine whether to display the save or delete button*/}
-      {localStorage.getItem('jwt') && !savedContainer ? (
-        <button
-          className="nav-button"
-          onClick={() => {
-            saveJob();
-            setSaved(true);
-          }}
-        >
-          Save Job
-        </button>
-      ) : localStorage.getItem('jwt') && savedContainer ? (
-        <button
-          className="nav-button"
-          onClick={() => {
-            deleteJob();
-            setSaved(false);
-          }}
-        >
-          Delete Job
-        </button>
+      {savedContainer ? (
+        <textarea
+          className="comment-box"
+          rows="5"
+          cols="40"
+          defaultValue={notes || 'keep notes here'}
+        />
       ) : null}
+      <a href={url}>
+        <button className="nav-button">Learn More</button>
+      </a>
     </div>
   );
 }

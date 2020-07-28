@@ -1,3 +1,2 @@
-# Jobify
-
-Find and track jobs posted across various websites.
+# job-board-project
+Present a list of jobs for users to view and save.

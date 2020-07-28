@@ -1,131 +1,45 @@
-$primaryColor: #1e90ff;
-$secondaryColor: lighten($primaryColor, 35%);
+$primaryColor: #212529;
+$secondaryColor: lighten($primaryColor, 10%);
+$tertiaryColor: lighten($secondaryColor, 10%);
 
 body {
-  margin: 0;
   font-family: 'Times New Roman', Times, serif;
-  background-color: $secondaryColor;
+  background-color: #dfdfdf;
 }
 
-h2 {
-  font-size: 2rem;
-  color: white;
+#find-jobs-display {
+  display: flex;
+  flex-wrap: wrap;
 }
-
-input {
-  font-size: 1.2rem;
-  border-style: none;
-  border-radius: 5px;
-  background: $secondaryColor;
-  padding: 5px;
-  margin: 5px;
-  outline: none;
+.job-container {
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0px 30px 0px 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px;
+  width: 20vw;
+  min-width: 280px;
 }
 
 .company {
   color: $secondaryColor;
 }
 
-.login-form {
-  background: $primaryColor;
-  margin: 30px auto;
-  flex-direction: column;
-  max-width: 25vw;
+.text-muted {
+  color: darken(#6c757d, 50%) !important;
+}
+.login {
+  max-width: 30vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px gray;
-}
-
-.logo-image {
-  max-height: 100px;
-}
-
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 60px 10px 30px;
-  margin-bottom: 30px;
-  color: white;
-  background-image: linear-gradient(
-    to right,
-    lighten($primaryColor, 20%),
-    $primaryColor
-  );
-  box-shadow: 0 3px 2px gray;
-}
-
-.nav-button {
-  background: $secondaryColor;
-  font-size: 1.2rem;
-  font-weight: 700;
-  padding: 5px 5px;
-  border: 1px solid #6c757d;
-  border-radius: 5px;
-  color: dodgerblue;
-  margin: 5px;
-  transition-property: background-color, color;
-  transition-duration: 400ms;
-  &:hover {
-    outline: none;
-    background: #6c757d;
-    color: white;
-  }
-}
-
-.job-container {
-  border-radius: 10px;
-  background-color: #fff;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 2px 2px 5px gray;
-  width: 20vw;
-  min-width: 280px;
-}
-
-.job-content {
-  padding: 5px 10px;
-  & ul {
-    list-style: none;
-    padding: 0px;
-    font-style: italic;
-  }
-}
-
-.job-header {
-  background: $primaryColor;
-  text-align: center;
-  color: white;
-  width: 100%;
-  font-size: 1.2rem;
-  font-weight: 700;
-  padding: 5px 0;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-#main-container {
-  display: flex;
-  flex-direction: column;
-}
-
-#jobs-container {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 #search-container {
   display: flex;
   justify-content: center;
-  padding: 20px 0 40px 0;
+  padding: 50px 50px;
 }
 
 #job-search {
@@ -135,7 +49,6 @@ input {
   outline: none;
 }
 
-#find-jobs-display {
-  display: flex;
-  flex-wrap: wrap;
+.logo-image {
+  max-height: 100px;
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Job from './Job';
 
-export default function MainPage() {
+export default function MainPage({ login }) {
   const [jobs, setJobs] = useState([]);
   const [title, setTitle] = useState('');
   const [loc, setLoc] = useState('');
@@ -49,7 +49,7 @@ export default function MainPage() {
         <Link to="/">
           <button className="nav-button">All Jobs</button>
         </Link>
-        <Link to="/jobs">
+        <Link to={login ? '/jobs' : '/login'}>
           <button className="nav-button">Saved Jobs</button>
         </Link>
       </div>
@@ -82,7 +82,6 @@ export default function MainPage() {
               job={job}
               savedContainer={false}
               saveJob={() => saveJob(job)}
-              deleteJob={() => deleteJob()}
             />
           );
         })}

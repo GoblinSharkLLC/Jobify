@@ -196,3 +196,9 @@ input {
 .hide {
   display: none;
 }
+
+.v-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

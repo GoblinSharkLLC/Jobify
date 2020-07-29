@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function NavBar({ login, setLogin }) {
+export default function NavBar({ login, setLogin, setLoggedUser, loggedUser }) {
   const [userName, setUserName] = useState('');
 
   const parseJwt = (token) => {
@@ -22,52 +22,35 @@ export default function NavBar({ login, setLogin }) {
     <div className="nav-bar">
       <div>
         <Link to="/">
-          <img src="src/assets/onlinelogomaker-072720-1517-6771.png"></img>
+          <img src="src/assets/jobify-logo.png"></img>
         </Link>
       </div>
-      <div>
-        <Link to="/login">
-          <button className="nav-button">Login</button>
-        </Link>
-        <Link to="/signup">
-          <button className="nav-button">Sign Up</button>
-        </Link>
-      </div>
+      {loggedUser ? (
+        <div className="v-flex">
+          <h3>User: {loggedUser}</h3>
+          <Link to="/">
+            <button
+              className="nav-button"
+              onClick={() => {
+                setLogin(false);
+                setLoggedUser('');
+                localStorage.removeItem('jwt');
+              }}
+            >
+              Sign Out
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div>
+          <Link to="/login">
+            <button className="nav-button">Login</button>
+          </Link>
+          <Link to="/signup">
+            <button className="nav-button">Sign Up</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
-
-  /*return (
-    <div>
-      <div>
-        <Navbar bg="light">
-          <Col>
-            <Navbar.Brand className="h1">Jobly</Navbar.Brand>
-          </Col>
-          <Col>
-            <Button variant="outline-secondary" as={Link} to="/">
-              Find Jobs
-            </Button>
-          </Col>
-          <Button variant="outline-secondary" as={Link} to="/jobs">
-            Saved Jobs
-          </Button>
-          <Col xs={2} />
-          <Col xs={1}>
-            {userName ? (
-              <NavItem>{userName}</NavItem>
-            ) : (
-              <div>
-                <Button variant="outline-primary" as={Link} to="/login">
-                  Log In
-                </Button>
-                <Button variant="outline-primary" as={Link} to="/signup">
-                  Sign Up
-                </Button>
-              </div>
-            )}
-          </Col>
-        </Navbar>
-      </div>
-    </div>
-  );*/
 }

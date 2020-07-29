@@ -7,9 +7,17 @@ body {
   background-color: $secondaryColor;
 }
 
+p {
+  margin: 2px 0;
+}
+
 h2 {
   font-size: 2rem;
   color: white;
+}
+
+h3 {
+  margin: 5px 0;
 }
 
 input {
@@ -79,13 +87,13 @@ input {
 .job-container {
   border-radius: 10px;
   background-color: #fff;
-  margin: auto;
+  opacity: 0.8;
+  margin: 10px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 2px 2px 5px gray;
-  width: 20vw;
-  min-width: 280px;
+  width: 450px;
 }
 
 .job-content {
@@ -98,6 +106,8 @@ input {
 }
 
 .job-header {
+  display: flex;
+  justify-content: space-between;
   background: $primaryColor;
   text-align: center;
   color: white;
@@ -105,6 +115,7 @@ input {
   font-size: 1.2rem;
   font-weight: 700;
   padding: 5px 0;
+  margin-bottom: 15px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -135,7 +146,59 @@ input {
   outline: none;
 }
 
+#job-title {
+  margin-left: 10px;
+}
+
 #find-jobs-display {
+  width: 90%;
+  margin: auto;
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
+}
+
+#location {
+  font-style: italic;
+}
+
+#company-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+#company-logo {
+  display: flex;
+  align-self: center;
+  & img {
+    max-height: 100px;
+    max-width: 125px;
+  }
+}
+
+#save-job,
+#delete-job {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  transition-duration: 200ms;
+  &:active {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.comment-box {
+  background: $secondaryColor;
+  padding: 3px;
+}
+
+.hide {
+  display: none;
+}
+
+.v-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

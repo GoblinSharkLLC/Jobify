@@ -18,24 +18,42 @@ export default function JobContainer() {
       notes: 'Whats up',
     },
   ]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios.post('api/users/savedJobs', {
-          accessToken: localStorage.getItem('jwt'),
-        });
-        setSavedJobs(result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    async function fetchData() {
+      const result = await axios.post('api/users/savedJobs', {
+        accessToken: localStorage.getItem('jwt'),
+      });
+      setSavedJobs(result.data);
+    }
     fetchData();
   }, []);
+
+  const deleteJob = async (id) => {
+    try {
+      await axios.delete('/api/users/jobs', {
+        data: {
+          accessToken: localStorage.getItem('jwt'),
+          id: id,
+        },
+      });
+      const element = document.getElementById(`job-container-${id}`);
+      element.classList.add('hide');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div id="find-jobs-display">
       {savedJobs.map((savedJob, idx) => {
         return (
-          <Job key={`savedJob${idx}`} job={savedJob} savedContainer={true} />
+          <Job
+            key={`savedJob${idx}`}
+            job={savedJob}
+            savedContainer={true}
+            deleteJob={deleteJob}
+          />
         );
       })}
     </div>

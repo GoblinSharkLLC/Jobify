@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Login({ setLogin, status }) {
+export default function Login({ setLogin, setLoggedUser, status }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     axios
       .post(`/api/users/${status}`, {
@@ -16,6 +16,7 @@ export default function Login({ setLogin, status }) {
       })
       .then((response) => {
         window.localStorage.setItem('jwt', response.data.accessToken);
+        setLoggedUser(username);
         // redirect to find/saved jobs
         setLogin(true);
         history.push('/');
@@ -43,7 +44,7 @@ export default function Login({ setLogin, status }) {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       ></input>
-      <button className="nav-button" onClick={(e) => handleSubmit(e)}>
+      <button className="nav-button" onClick={(e) => handleLogin(e)}>
         Submit
       </button>
     </div>

@@ -6,7 +6,7 @@ const jobController = {};
 jobController.searchJobs = (req, res, next) => {
   // Destructure the search query sent from the frontend
   console.log('Entering searchJobs, req.query: ', req.query);
-  const { location, title: description } = req.query;
+  const { location, description } = req.query;
 
   // Send search request to the github API with the destructured search parameters.
   axios
@@ -17,7 +17,6 @@ jobController.searchJobs = (req, res, next) => {
       },
     })
     .then((result) => {
-      // console.log(result.data);
       return res.status(200).json(result.data);
     })
     .catch((err) => {
@@ -26,7 +25,6 @@ jobController.searchJobs = (req, res, next) => {
         message: { err: `Error fetching api: ${err}` },
       });
     });
-  // https://jobs.github.com/positions.json?description=python&location=new+york // example full URL
 };
 
 jobController.saveJob = (req, res, next) => {
@@ -90,7 +88,7 @@ jobController.getUserJobs = (req, res, next) => {
   const values = [userId];
   db.query(text, values)
     .then((data) => {
-      console.log('This is the data in getUserJobs: ', data);
+      // console.log('This is the data in getUserJobs: ', data);
       return res.status(200).json(data.rows);
     })
     .catch((err) => {
@@ -126,11 +124,11 @@ jobController.updateJob = (req, res, next) => {
 jobController.deleteJob = (req, res, next) => {
   // console.log('Entering deleteJob');
   // Send a delete query to the database with the destructured job ID
-  const { id: jobId } = req.body.job;
+  const { id } = req.body;
   const text = `DELETE FROM jobs WHERE id=$1`;
-  const values = [jobId];
+  const values = [id];
   db.query(text, values)
-    .then(() => res.status(200).send(`Job ${jobId} deleted`))
+    .then(() => res.status(200).send(`Job ${id} deleted`))
     .catch((err) => {
       return next({
         log: 'Error in DeleteJob',

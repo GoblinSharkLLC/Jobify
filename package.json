@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/GoblinSharkLLC/Jobify#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
